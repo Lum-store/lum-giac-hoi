@@ -1,0 +1,17 @@
+const fs = require("fs");
+
+const H = ["Thời gian", "Mã đơn", "Sản phẩm", "Phân loại", "SL", "Đơn giá", "Tổng tiền", "Khách hàng", "SĐT", "Địa chỉ", "Ghi chú", "Nguồn (utm_source)", "Chiến dịch", "fbclid", "Trang đặt", "Link sản phẩm"];
+
+const rows = [
+  ["27/10/2026 14:32:10", "LS2610271432101", "Túi Boston ren nữ cầm tay", "Trắng", 1, 285000, 285000, "Nguyễn Thu Hà", "'0987654321", "12 Trần Hưng Đạo, Phường Bắc Sơn, Thành phố Tam Điệp, Ninh Bình", "giao giờ hành chính", "fb", "camp-tui-boston", "IwAR1xExampleFbclid", "/p/tui-boston-ren-nu.html", "https://lumstore.vn/p/tui-boston-ren-nu.html"],
+  ["27/10/2026 15:05:44", "LS2610271505442", "Túi mini Kelly nữ hot trend", "Đen", 2, 265000, 530000, "Trần Minh Anh", "'0912345678", "45 Lê Lợi, Phường Phan Chu Trinh, Quận Hoàn Kiếm, Hà Nội", "", "fb", "camp-kelly", "", "/p/tui-mini-kelly-nu.html", "https://lumstore.vn/p/tui-mini-kelly-nu.html"]
+];
+
+const q = (v) => {
+  const s = String(v == null ? "" : v);
+  return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+};
+
+const csv = "\uFEFF" + [H, ...rows].map((r) => r.map(q).join(",")).join("\r\n") + "\r\n";
+fs.writeFileSync("data/DonHang-mau.csv", csv, "utf8");
+console.log("wrote data/DonHang-mau.csv", Buffer.byteLength(csv), "bytes");

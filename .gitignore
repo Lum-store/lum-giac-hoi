@@ -1,0 +1,10 @@
+# File dữ liệu và secrets local
+node_modules/
+dist/
+data/products.json.bak
+*.log
+.env
+.env.local
+
+# Không đưa admin tooling lên public host (đã bị chặn bởi .gitignore? không — giữ để admin local)
+# admin.html, server.mjs, build.mjs vẫn cần cho local admin, nên KHÔNG ignore.
