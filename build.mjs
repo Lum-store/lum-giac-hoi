@@ -107,15 +107,15 @@ function header(base) {
   return `<div class="topbar">Freeship toàn quốc đơn từ <b>299K</b> · Kiểm hàng trước khi thanh toán · Đổi trả 7 ngày</div>
 <header class="header">
   <div class="container header-in">
-    <a class="logo" href="${base}">
+    <a class="logo" href="${base}/index.html">
       <span class="logo-mark">L</span>
       <span>${esc(B.name)}<small>${esc(B.tagline)}</small></span>
     </a>
     <nav class="header-nav">
-      <a href="${base}">Trang chủ</a>
-      <a href="${base}#san-pham">Sản phẩm</a>
-      <a href="${base}/chinh-sach">Chính sách</a>
-      <a href="${base}#faq">Hỏi đáp</a>
+      <a href="${base}/index.html">Trang chủ</a>
+      <a href="${base}/index.html#san-pham">Sản phẩm</a>
+      <a href="${base}/chinh-sach.html">Chính sách</a>
+      <a href="${base}/index.html#faq">Hỏi đáp</a>
     </nav>
     <div class="header-actions">
       <a class="call-btn" href="tel:${B.phone}">
@@ -142,10 +142,10 @@ function footer(base) {
     <div>
       <h4>Chính sách</h4>
       <div class="footer-links">
-        <a href="${base}/chinh-sach#doi-tra">Đổi trả 7 ngày</a>
-        <a href="${base}/chinh-sach#van-chuyen">Vận chuyển</a>
-        <a href="${base}/chinh-sach#bao-mat">Bảo mật thông tin</a>
-        <a href="${base}/chinh-sach#thanh-toan">Thanh toán</a>
+        <a href="${base}/chinh-sach.html#doi-tra">Đổi trả 7 ngày</a>
+        <a href="${base}/chinh-sach.html#van-chuyen">Vận chuyển</a>
+        <a href="${base}/chinh-sach.html#bao-mat">Bảo mật thông tin</a>
+        <a href="${base}/chinh-sach.html#thanh-toan">Thanh toán</a>
       </div>
     </div>
     <div>
@@ -172,7 +172,7 @@ const PROVINCES = JSON.parse(readFileSync(join(ROOT, "data/provinces.json"), "ut
 /* ---------- home ---------- */
 function card(p) {
   const img = p.images[0];
-  return `<a class="card" href="p/${p.slug}">
+  return `<a class="card" href="p/${p.slug}.html">
     <div class="card-media">
       <img src="${img}" alt="${esc(p.name)}" loading="lazy" width="400" height="400">
       ${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : pct(p) > 0 ? `<span class="badge">-${pct(p)}%</span>` : ""}
@@ -199,7 +199,7 @@ function homePage() {
     return `<div class="review">
         <div class="review-top"><div class="avatar">${esc(initials(r.name))}</div><div><b>${esc(r.name)}</b><div class="stars">${starStr(r.stars)}</div></div></div>
         <p>“${esc(r.text)}”</p>
-        <div class="review-sp"><a href="p/${p.slug}">${esc(p.name)}</a> · ${esc(r.date)}</div>
+        <div class="review-sp"><a href="p/${p.slug}.html">${esc(p.name)}</a> · ${esc(r.date)}</div>
       </div>`;
   }).join("\n      ");
   return `${head({
@@ -333,7 +333,7 @@ function productPage(p, index) {
   })}
 <body data-product-id="${esc(p.offerId || p.slug)}">
 ${header(base)}
-<div class="container breadcrumb"><a href="${base}">Trang chủ</a> / <a href="${base}#san-pham">Sản phẩm</a> / <span>${esc(p.name)}</span></div>
+<div class="container breadcrumb"><a href="${base}/index.html">Trang chủ</a> / <a href="${base}/index.html#san-pham">Sản phẩm</a> / <span>${esc(p.name)}</span></div>
 
 <div class="container pdp">
   <div class="pdp-gallery">
@@ -557,10 +557,10 @@ ${footer(base)}
 
 /* ---------- write ---------- */
 write("index.html", homePage());
-PRODUCTS.forEach((p, i) => write(`p/${p.slug}/index.html`, productPage(p, i)));
-write("chinh-sach/index.html", policyPage());
+PRODUCTS.forEach((p, i) => write(`p/${p.slug}.html`, productPage(p, i)));
+write("chinh-sach.html", policyPage());
 
-const urls = ["", "/chinh-sach", ...PRODUCTS.map((p) => `/p/${p.slug}`)];
+const urls = ["index.html", "chinh-sach.html", ...PRODUCTS.map((p) => `p/${p.slug}.html`)];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `  <url><loc>${u}</loc></url>`).join("\n")}

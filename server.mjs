@@ -267,23 +267,10 @@ const server = createServer(async (req, res) => {
     let p = path;
     if (p === "/") p = "/index.html";
     if (!extname(p) && !p.endsWith("/")) {
-      // pretty URL: /p/slug -> /p/slug/index.html
       try {
-        const candidate = join(ROOT, p, "index.html");
+        const candidate = join(ROOT, p + ".html");
         await readFile(candidate);
-        p = p + "/index.html";
-      } catch {
-        try {
-          const candidate2 = join(ROOT, p + ".html");
-          await readFile(candidate2);
-          p = p + ".html";
-        } catch {}
-      }
-    } else if (p.endsWith("/")) {
-      try {
-        const candidate = join(ROOT, p, "index.html");
-        await readFile(candidate);
-        p = p + "index.html";
+        p = p + ".html";
       } catch {}
     }
     const file = normalize(join(ROOT, p));
