@@ -9,7 +9,7 @@
     "email": "hotro@lumstore.vn",
     "address": "Yên Chính, Phong Doanh, Ninh Bình",
     "sheetEndpoint": "https://script.google.com/macros/s/AKfycbzNQ9Neiyrie5w6OQFu_LAz6MfSfgszlPtmGEOjYSBCfm2hlCIatzBsWF3-S3H1I7Hs/exec",
-    "fbPixel": "",
+    "fbPixel": "1490463016261519",
     "currency": "đ"
   },
   "products": [
@@ -561,11 +561,5 @@
       "video": "assets/videos/tui-xep-ly-no-nu.mp4",
       "videoPoster": "assets/videos/tui-xep-ly-no-nu.jpg"
     }
-  ],
-  "videos": {
-    "factory": {
-      "src": "assets/videos/xuong-may.mp4",
-      "poster": "assets/videos/xuong-may.jpg"
-    }
-  }
+  ]
 }
