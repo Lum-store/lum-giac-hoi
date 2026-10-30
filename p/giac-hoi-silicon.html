@@ -78,28 +78,21 @@ window.LUM_CONFIG = {"brand":"Lụm Store","phone":"0982467019","sheetEndpoint":
     <div class="price-box">
       <div class="row">
         <span class="price">95.000đ</span>
-        
-        
+        <span class="price-old">290.000đ</span>
+        <span class="save">Tiết kiệm 67%</span>
       </div>
-      <div class="note">Giá đã gồm VAT · Miễn phí ship đơn từ 299K</div>
+      <div class="note">Gói 5 &amp; 10 cái: +30.000đ ship · Freeship từ 20 cái</div>
     </div>
 
     
       <div class="opt-group">
         <label class="opt-label">Lựa chọn: <span data-selected="Lựa chọn">1 cái (mua tối thiểu 5 cái)</span></label>
         <div class="chips" data-group="Lựa chọn">
-          <button type="button" class="opt is-active" data-value="1 cái (mua tối thiểu 5 cái)" data-price="95000" data-count="5">1 cái (mua tối thiểu 5 cái)</button><button type="button" class="opt" data-value="Combo 10 cái" data-price="99000" data-count="10">Combo 10 cái · 99.000đ</button><button type="button" class="opt" data-value="Combo 20 cái" data-price="179000" data-count="20">Combo 20 cái · 179.000đ</button><button type="button" class="opt" data-value="Combo 30 cái" data-price="249000" data-count="30">Combo 30 cái · 249.000đ</button>
+          <button type="button" class="opt is-active" data-value="1 cái (mua tối thiểu 5 cái)" data-price="95000" data-oldprice="290000" data-shipping="30000" data-count="5">1 cái (mua tối thiểu 5 cái)</button><button type="button" class="opt" data-value="Combo 10 cái" data-price="99000" data-oldprice="300000" data-shipping="30000" data-count="10">Combo 10 cái · 99.000đ</button><button type="button" class="opt" data-value="Combo 20 cái" data-price="179000" data-oldprice="540000" data-shipping="0" data-count="20">Combo 20 cái · 179.000đ</button><button type="button" class="opt" data-value="Combo 30 cái" data-price="249000" data-oldprice="750000" data-shipping="0" data-count="30">Combo 30 cái · 249.000đ</button>
         </div>
       </div>
 
-    <div class="opt-group">
-      <label class="opt-label">Số lượng</label>
-      <div class="qty">
-        <button type="button" data-step="-1" aria-label="Giảm">−</button>
-        <input id="qtyInput" type="number" inputmode="numeric" value="1" min="1" max="99" data-unit="95000" aria-label="Số lượng">
-        <button type="button" data-step="1" aria-label="Tăng">+</button>
-      </div>
-    </div>
+    <input id="qtyInput" type="hidden" value="1" min="1" max="99" data-unit="95000" data-shipping="30000" aria-label="So luong">
 
     <div class="pdp-buy">
       <a class="btn btn-primary" href="#orderForm">Đặt hàng ngay</a>

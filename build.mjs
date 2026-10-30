@@ -309,19 +309,23 @@ function productPage(p, index) {
   const normOpt = (o) => {
     if (typeof o === "string") o = { value: o };
     const price = (o.price != null && o.price !== "") ? Number(o.price) : p.price;
+    const oldPrice = (o.oldPrice != null && o.oldPrice !== "") ? Number(o.oldPrice) : (p.oldPrice || 0);
     const count = (o.count != null && o.count !== "") ? Number(o.count) : 1;
-    return { value: String(o.value || o.name || o.label || "").trim(), price, count };
+    const shipping = (o.shipping != null && o.shipping !== "") ? Number(o.shipping) : 0;
+    return { value: String(o.value || o.name || o.label || "").trim(), price, oldPrice, count, shipping };
   };
   const normGroups = (p.variants || []).map((g) => ({
     name: g.name || "Phân loại",
     options: (g.options || []).map(normOpt).filter((o) => o.value)
   })).filter((g) => g.options.length);
   const firstPrice = normGroups.length && normGroups[0].options.length ? normGroups[0].options[0].price : p.price;
+  const firstOldPrice = normGroups.length && normGroups[0].options.length ? normGroups[0].options[0].oldPrice : (p.oldPrice || 0);
+  const firstShipping = normGroups.length && normGroups[0].options.length ? normGroups[0].options[0].shipping : 0;
   const variantHtml = normGroups.map((g) => `
       <div class="opt-group">
         <label class="opt-label">${esc(g.name)}: <span data-selected="${esc(g.name)}">${esc(g.options[0].value)}</span></label>
         <div class="chips" data-group="${esc(g.name)}">
-          ${g.options.map((o, i) => `<button type="button" class="opt${i === 0 ? " is-active" : ""}" data-value="${esc(o.value)}" data-price="${o.price}" data-count="${o.count}">${esc(o.value)}${o.price !== p.price ? ` · ${money(o.price)}` : ""}</button>`).join("")}
+          ${g.options.map((o, i) => `<button type="button" class="opt${i === 0 ? " is-active" : ""}" data-value="${esc(o.value)}" data-price="${o.price}" data-oldprice="${o.oldPrice}" data-shipping="${o.shipping}" data-count="${o.count}">${esc(o.value)}${o.price !== firstPrice ? ` · ${money(o.price)}` : ""}</button>`).join("")}
         </div>
       </div>`).join("");
 
@@ -366,23 +370,16 @@ ${header(base)}
 
     <div class="price-box">
       <div class="row">
-        <span class="price">${money(p.price)}</span>
-        ${p.oldPrice > p.price ? `<span class="price-old">${money(p.oldPrice)}</span>` : ""}
-        ${p.oldPrice > p.price ? `<span class="save">Tiết kiệm ${pct(p)}%</span>` : ""}
+        <span class="price">${money(firstPrice)}</span>
+        ${firstOldPrice > firstPrice ? `<span class="price-old">${money(firstOldPrice)}</span>` : ""}
+        ${firstOldPrice > firstPrice ? `<span class="save">Tiết kiệm ${Math.max(0, Math.round((1 - firstPrice / firstOldPrice) * 100))}%</span>` : ""}
       </div>
-      <div class="note">Giá đã gồm VAT · Miễn phí ship đơn từ 299K</div>
+      <div class="note">${esc(p.shippingNote || "Gia da gom VAT . Mien phi ship don tu 179K")}</div>
     </div>
 
     ${variantHtml}
 
-    <div class="opt-group">
-      <label class="opt-label">Số lượng</label>
-      <div class="qty">
-        <button type="button" data-step="-1" aria-label="Giảm">−</button>
-        <input id="qtyInput" type="number" inputmode="numeric" value="1" min="1" max="99" data-unit="${firstPrice}" aria-label="Số lượng">
-        <button type="button" data-step="1" aria-label="Tăng">+</button>
-      </div>
-    </div>
+    <input id="qtyInput" type="hidden" value="1" min="1" max="99" data-unit="${firstPrice}" data-shipping="${firstShipping}" aria-label="So luong">
 
     <div class="pdp-buy">
       <a class="btn btn-primary" href="#orderForm">Đặt hàng ngay</a>
