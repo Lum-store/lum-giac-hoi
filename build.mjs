@@ -375,14 +375,7 @@ ${header(base)}
 
     ${variantHtml}
 
-    <div class="opt-group">
-      <label class="opt-label">Số lượng</label>
-      <div class="qty">
-        <button type="button" data-step="-1" aria-label="Giảm">−</button>
-        <input id="qtyInput" type="number" inputmode="numeric" value="1" min="1" max="99" data-unit="${firstPrice}" aria-label="Số lượng">
-        <button type="button" data-step="1" aria-label="Tăng">+</button>
-      </div>
-    </div>
+    <input id="qtyInput" type="hidden" value="1" min="1" max="99" data-unit="${firstPrice}" aria-label="Số lượng">
 
     <div class="pdp-buy">
       <a class="btn btn-primary" href="#orderForm">Đặt hàng ngay</a>

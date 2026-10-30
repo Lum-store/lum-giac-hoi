@@ -22,8 +22,8 @@
     {
       "name": "Giác hơi silicon massage fascia (không dùng lửa)",
       "slug": "giac-hoi-silicon",
-      "price": 49000,
-      "oldPrice": 147000,
+      "price": 245000,
+      "oldPrice": 735000,
       "badge": "Bán chạy",
       "images": [
         "assets/img/giac-hoi-silicon/1.jpg",
@@ -41,24 +41,24 @@
           "name": "Lựa chọn",
           "options": [
             {
-              "value": "1 cái - Đỏ",
-              "price": 49000,
-              "count": 1
+              "value": "1 cái (mua tối thiểu 5 cái)",
+              "price": 245000,
+              "count": 5
             },
             {
-              "value": "1 cái - Đen",
-              "price": 49000,
-              "count": 1
-            },
-            {
-              "value": "Combo 10 cái - Đỏ",
+              "value": "Combo 10 cái",
               "price": 99000,
               "count": 10
             },
             {
-              "value": "Combo 10 cái - Đen",
-              "price": 99000,
-              "count": 10
+              "value": "Combo 20 cái",
+              "price": 179000,
+              "count": 20
+            },
+            {
+              "value": "Combo 30 cái",
+              "price": 249000,
+              "count": 30
             }
           ]
         }
