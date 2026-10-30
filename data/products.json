@@ -43,26 +43,26 @@
             {
               "value": "1 cái (mua tối thiểu 5 cái)",
               "price": 95000,
-              "count": 5,
-              "oldPrice": 290000
+              "oldPrice": 290000,
+              "count": 5
             },
             {
               "value": "Combo 10 cái",
               "price": 99000,
-              "count": 10,
-              "oldPrice": 300000
+              "oldPrice": 300000,
+              "count": 10
             },
             {
               "value": "Combo 20 cái",
               "price": 179000,
-              "count": 20,
-              "oldPrice": 540000
+              "oldPrice": 540000,
+              "count": 20
             },
             {
               "value": "Combo 30 cái",
               "price": 249000,
-              "count": 30,
-              "oldPrice": 750000
+              "oldPrice": 750000,
+              "count": 30
             }
           ]
         }
@@ -78,7 +78,7 @@
         },
         {
           "k": "Xuất xứ",
-          "v": "Chiết Giang, Trung Quốc"
+          "v": "Lô D2, Đường D3, Khu công nghiệp chuyên sâu Phú Mỹ 3, Phường Phước Hòa, Thị xã Phú Mỹ, Tỉnh Bà Rịa – Vũng Tàu, Việt Nam"
         },
         {
           "k": "Màu sắc",
@@ -86,7 +86,7 @@
         },
         {
           "k": "Số lượng/gói",
-          "v": "1 cái hoặc Combo 10 cái"
+          "v": "Theo gói"
         },
         {
           "k": "Công dụng",

@@ -13,6 +13,8 @@ const ASSET_VER = createHash("sha1")
   .update(readFileSync(join(ROOT, "assets/app.js")))
   .update(readFileSync(join(ROOT, "assets/style.css")))
   .digest("hex").slice(0, 8);
+// BUILD_ID đổi mỗi lần build → bust cache cho ảnh/video khi user thay file cùng tên
+const BUILD_ID = Date.now().toString(36);
 const data = JSON.parse(readFileSync(join(ROOT, "data/products.json"), "utf8"));
 const B = data.brand;
 const FACTORY = data.videos && data.videos.factory;
@@ -174,7 +176,7 @@ function card(p) {
   const img = p.images[0];
   return `<a class="card" href="p/${p.slug}.html">
     <div class="card-media">
-      <img src="${img}" alt="${esc(p.name)}" loading="lazy" width="400" height="400">
+      <img src="${img}?v=${BUILD_ID}" alt="${esc(p.name)}" loading="lazy" width="400" height="400">
       ${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : pct(p) > 0 ? `<span class="badge">-${pct(p)}%</span>` : ""}
     </div>
     <div class="card-body">
@@ -258,7 +260,7 @@ ${list}
   <div class="container">
     <div class="section-head"><div><h2>Xưởng may thật, quay tại xưởng</h2><p>Hàng làm tại xưởng, không qua trung gian — nên giá mới rẻ được như vậy</p></div><a href="#san-pham">Xem sản phẩm</a></div>
     ${FACTORY ? `<div class="factory-video" id="factoryVideoWrap">
-      <video id="factoryVideo" poster="${base}/${FACTORY.poster}" data-src="${base}/${FACTORY.src}" preload="none" playsinline webkit-playsinline x5-playsinline="true" x5-video-player-type="h5" muted></video>
+      <video id="factoryVideo" poster="${base}/${FACTORY.poster}?v=${BUILD_ID}" data-src="${base}/${FACTORY.src}?v=${BUILD_ID}" preload="none" playsinline webkit-playsinline x5-playsinline="true" x5-video-player-type="h5" muted></video>
       <button class="video-cover" id="factoryPlay" type="button" aria-label="Xem video xưởng may">
         <span class="video-cover-ico">▶</span>
         <span class="video-cover-tx">Xem video xưởng may</span>
@@ -303,9 +305,9 @@ function productPage(p, index) {
   const hasVideo = !!p.video;
   const vPoster = p.videoPoster || p.images[0];
   const thumbs = (hasVideo ? `
-      <button class="thumb thumb-video is-active" data-video="${base}/${p.video}" data-poster="${base}/${vPoster}" aria-label="Video sản phẩm"><img src="${base}/${vPoster}" alt="${esc(p.name)} - video" loading="lazy"><span class="thumb-play">▶</span></button>` : "")
+      <button class="thumb thumb-video is-active" data-video="${base}/${p.video}?v=${BUILD_ID}" data-poster="${base}/${vPoster}?v=${BUILD_ID}" aria-label="Video sản phẩm"><img src="${base}/${vPoster}?v=${BUILD_ID}" alt="${esc(p.name)} - video" loading="lazy"><span class="thumb-play">▶</span></button>` : "")
     + p.images.map((src, i) => `
-      <button class="thumb${!hasVideo && i === 0 ? " is-active" : ""}" data-idx="${i}" data-src="${base}/${src}" aria-label="Ảnh ${i + 1}"><img src="${base}/${src}" alt="${esc(p.name)} - ảnh ${i + 1}" loading="lazy"></button>`).join("");
+      <button class="thumb${!hasVideo && i === 0 ? " is-active" : ""}" data-idx="${i}" data-src="${base}/${src}?v=${BUILD_ID}" aria-label="Ảnh ${i + 1}"><img src="${base}/${src}?v=${BUILD_ID}" alt="${esc(p.name)} - ảnh ${i + 1}" loading="lazy"></button>`).join("");
   const normOpt = (o) => {
     if (typeof o === "string") o = { value: o };
     const price = (o.price != null && o.price !== "") ? Number(o.price) : p.price;
@@ -333,7 +335,7 @@ function productPage(p, index) {
 
   const related = PRODUCTS.filter((x) => x.slug !== p.slug).slice(0, 4).map((x) => `
       <a class="card" href="../${x.slug}/">
-        <div class="card-media"><img src="${base}/${x.images[0]}" alt="${esc(x.name)}" loading="lazy"></div>
+        <div class="card-media"><img src="${base}/${x.images[0]}?v=${BUILD_ID}" alt="${esc(x.name)}" loading="lazy"></div>
         <div class="card-body"><h3 class="card-title">${esc(x.name)}</h3>
         <div class="card-price"><span class="price">${money(x.price)}</span></div></div>
       </a>`).join("");
@@ -351,8 +353,8 @@ ${header(base)}
 <div class="container pdp">
   <div class="pdp-gallery">
     <div class="gallery-main" id="galleryMain">
-      <img id="galleryImg" src="${base}/${p.images[0]}" alt="${esc(p.name)}" width="800" height="800"${hasVideo ? " hidden" : ""}>
-      ${hasVideo ? `<video id="galleryVideo" class="gallery-video" src="${base}/${p.video}" poster="${base}/${vPoster}" autoplay muted controls playsinline webkit-playsinline x5-playsinline="true" x5-video-player-type="h5"></video>
+      <img id="galleryImg" src="${base}/${p.images[0]}?v=${BUILD_ID}" alt="${esc(p.name)}" width="800" height="800"${hasVideo ? " hidden" : ""}>
+      ${hasVideo ? `<video id="galleryVideo" class="gallery-video" src="${base}/${p.video}?v=${BUILD_ID}" poster="${base}/${vPoster}?v=${BUILD_ID}" autoplay muted controls playsinline webkit-playsinline x5-playsinline="true" x5-video-player-type="h5"></video>
       <button class="gallery-play" id="galleryPlay" type="button" aria-label="Xem video sản phẩm" hidden><span class="gallery-play-ico">▶</span><span class="gallery-play-tx">Xem video sản phẩm</span></button>
       <span class="gallery-progress" id="galleryProgress" hidden><i></i></span>` : ""}
       ${p.images.length > 1 ? `<span class="gallery-count" id="galleryCount">${hasVideo ? "Video" : "1/" + p.images.length}</span>` : ""}
@@ -449,7 +451,7 @@ ${header(base)}
     <div class="prose">${p.description || "<p>Đang cập nhật.</p>"}</div>
     ${specs ? `<h3 style="margin-top:18px">Thông số</h3>${specs}` : ""}
     ${p.images.length > 1 ? `<h3 style="margin-top:22px">Album ảnh (${p.images.length})</h3>
-    <div class="album">${p.images.map((src, i) => `<button class="album-item" type="button" data-idx="${i}"><img src="${base}/${src}" alt="${esc(p.name)} ${i + 1}" loading="lazy"></button>`).join("")}</div>` : ""}
+    <div class="album">${p.images.map((src, i) => `<button class="album-item" type="button" data-idx="${i}"><img src="${base}/${src}?v=${BUILD_ID}" alt="${esc(p.name)} ${i + 1}" loading="lazy"></button>`).join("")}</div>` : ""}
   </div>
 
   <div class="panel" id="danh-gia">
