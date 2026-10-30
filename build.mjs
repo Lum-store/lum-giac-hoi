@@ -1,5 +1,5 @@
-﻿// Lá»¥m Store â€” static site builder
-// Cháº¡y: node build.mjs
+// Lụm Store — static site builder
+// Chạy: node build.mjs
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,13 +8,11 @@ import { makeReviews } from "./reviews.mjs";
 
 export function buildSite() {
 const ROOT = process.cwd();
-// Äá»•i hash khi app.js/style.css thay Ä‘á»•i â†’ buá»™c browser táº£i báº£n má»›i, khÃ´ng dÃ­nh cache cÅ©
+// Đổi hash khi app.js/style.css thay đổi → buộc browser tải bản mới, không dính cache cũ
 const ASSET_VER = createHash("sha1")
   .update(readFileSync(join(ROOT, "assets/app.js")))
   .update(readFileSync(join(ROOT, "assets/style.css")))
   .digest("hex").slice(0, 8);
-// BUILD_ID Ä‘á»•i má»—i láº§n build â†’ bust cache cho áº£nh/video khi user thay file cÃ¹ng tÃªn
-const BUILD_ID = Date.now().toString(36);
 const data = JSON.parse(readFileSync(join(ROOT, "data/products.json"), "utf8"));
 const B = data.brand;
 const FACTORY = data.videos && data.videos.factory;
@@ -24,12 +22,12 @@ const RV = new Map(PRODUCTS.map((p) => [p.slug, makeReviews(p)]));
 /* ---------- review helpers ---------- */
 const initials = (name) =>
   String(name || "KH").trim().split(/\s+/).slice(-2).map((x) => x[0] || "").join("").toUpperCase();
-const starStr = (n) => "â˜…â˜…â˜…â˜…â˜…".slice(0, n);
+const starStr = (n) => "★★★★★".slice(0, n);
 const rvItem = (r, extra = "") => `<div class="rv-item">
         <div class="avatar">${esc(initials(r.name))}</div>
         <div class="rv-body">
           <div class="rv-head"><b>${esc(r.name)}</b>${extra}</div>
-          <div class="rv-meta"><span class="rv-stars">${starStr(r.stars)}</span> Â· ${esc(r.date)}${r.place ? ` Â· ${esc(r.place)}` : ""}</div>
+          <div class="rv-meta"><span class="rv-stars">${starStr(r.stars)}</span> · ${esc(r.date)}${r.place ? ` · ${esc(r.place)}` : ""}</div>
           <p>${esc(r.text)}</p>
         </div>
       </div>`;
@@ -38,11 +36,11 @@ const rvItem = (r, extra = "") => `<div class="rv-item">
 const esc = (s = "") =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-const money = (n) => Number(n || 0).toLocaleString("vi-VN") + "Ä‘";
+const money = (n) => Number(n || 0).toLocaleString("vi-VN") + "đ";
 const pct = (p) => Math.max(0, Math.round((1 - p.price / (p.oldPrice || p.price)) * 100));
 const slugify = (s) =>
   String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-    .replace(/Ä‘/g, "d").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    .replace(/đ/g, "d").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 function write(rel, content) {
   const file = join(ROOT, rel);
@@ -65,7 +63,7 @@ function ensurePlaceholder(p) {
 <rect width="800" height="800" fill="url(#g)"/>
 <circle cx="400" cy="330" r="120" fill="#ffd9c7"/>
 <text x="400" y="520" font-family="Segoe UI, sans-serif" font-size="34" font-weight="700" fill="#c4451c" text-anchor="middle">${label}</text>
-<text x="400" y="570" font-family="Segoe UI, sans-serif" font-size="22" fill="#e08a68" text-anchor="middle">áº¢nh ${i + 1} Â· thay báº±ng áº£nh tháº­t</text>
+<text x="400" y="570" font-family="Segoe UI, sans-serif" font-size="22" fill="#e08a68" text-anchor="middle">Ảnh ${i + 1} · thay bằng ảnh thật</text>
 </svg>`;
     writeFileSync(abs, svg, "utf8");
   });
@@ -106,7 +104,7 @@ ${extra}
 }
 
 function header(base) {
-  return `<div class="topbar">Freeship toÃ n quá»‘c Ä‘Æ¡n tá»« <b>179K</b> Â· Kiá»ƒm hÃ ng trÆ°á»›c khi thanh toÃ¡n Â· Äá»•i tráº£ 7 ngÃ y</div>
+  return `<div class="topbar">Freeship toàn quốc đơn từ <b>299K</b> · Kiểm hàng trước khi thanh toán · Đổi trả 7 ngày</div>
 <header class="header">
   <div class="container header-in">
     <a class="logo" href="${base}/index.html">
@@ -114,10 +112,10 @@ function header(base) {
       <span>${esc(B.name)}<small>${esc(B.tagline)}</small></span>
     </a>
     <nav class="header-nav">
-      <a href="${base}/index.html">Trang chá»§</a>
-      <a href="${base}/index.html#san-pham">Sáº£n pháº©m</a>
-      <a href="${base}/chinh-sach.html">ChÃ­nh sÃ¡ch</a>
-      <a href="${base}/index.html#faq">Há»i Ä‘Ã¡p</a>
+      <a href="${base}/index.html">Trang chủ</a>
+      <a href="${base}/index.html#san-pham">Sản phẩm</a>
+      <a href="${base}/chinh-sach.html">Chính sách</a>
+      <a href="${base}/index.html#faq">Hỏi đáp</a>
     </nav>
     <div class="header-actions">
       <a class="call-btn" href="tel:${B.phone}">
@@ -137,38 +135,38 @@ function footer(base) {
         <span class="logo-mark">L</span>
         <span>${esc(B.name)}<small>${esc(B.tagline)}</small></span>
       </div>
-      <p>ChuyÃªn hÃ ng tiÃªu dÃ¹ng chá»n lá»c, giÃ¡ táº­n gá»‘c. Giao toÃ n quá»‘c, thanh toÃ¡n khi nháº­n hÃ ng.</p>
+      <p>Chuyên hàng tiêu dùng chọn lọc, giá tận gốc. Giao toàn quốc, thanh toán khi nhận hàng.</p>
       <p>Hotline / Zalo: <a href="tel:${B.phone}"><b style="color:#fff">${esc(B.phoneDisplay)}</b></a></p>
       <p>${esc(B.address)}</p>
     </div>
     <div>
-      <h4>ChÃ­nh sÃ¡ch</h4>
+      <h4>Chính sách</h4>
       <div class="footer-links">
-        <a href="${base}/chinh-sach.html#doi-tra">Äá»•i tráº£ 7 ngÃ y</a>
-        <a href="${base}/chinh-sach.html#van-chuyen">Váº­n chuyá»ƒn</a>
-        <a href="${base}/chinh-sach.html#bao-mat">Báº£o máº­t thÃ´ng tin</a>
-        <a href="${base}/chinh-sach.html#thanh-toan">Thanh toÃ¡n</a>
+        <a href="${base}/chinh-sach.html#doi-tra">Đổi trả 7 ngày</a>
+        <a href="${base}/chinh-sach.html#van-chuyen">Vận chuyển</a>
+        <a href="${base}/chinh-sach.html#bao-mat">Bảo mật thông tin</a>
+        <a href="${base}/chinh-sach.html#thanh-toan">Thanh toán</a>
       </div>
     </div>
     <div>
-      <h4>LiÃªn há»‡</h4>
+      <h4>Liên hệ</h4>
       <div class="footer-links">
         <a href="${B.zalo}" target="_blank" rel="noopener">Zalo: ${esc(B.phoneDisplay)}</a>
         <a href="${B.messenger}" target="_blank" rel="noopener">Messenger</a>
         <a href="mailto:${B.email}">${esc(B.email)}</a>
       </div>
-      <p style="margin-top:10px">Thá»i gian há»— trá»£: 8:00 â€“ 21:00 háº±ng ngÃ y</p>
+      <p style="margin-top:10px">Thời gian hỗ trợ: 8:00 – 21:00 hằng ngày</p>
     </div>
   </div>
   <div class="container footer-bottom">
-    Â© ${new Date().getFullYear()} ${esc(B.name)}. GiÃ¡ Ä‘Ã£ bao gá»“m VAT. HÃ¬nh áº£nh mang tÃ­nh minh hoáº¡.
+    © ${new Date().getFullYear()} ${esc(B.name)}. Giá đã bao gồm VAT. Hình ảnh mang tính minh hoạ.
   </div>
 </footer>`;
 }
 
-const stars = (n = 5) => "â˜…â˜…â˜…â˜…â˜…".slice(0, n);
+const stars = (n = 5) => "★★★★★".slice(0, n);
 
-/* 63 tá»‰nh / thÃ nh phá»‘ (Ä‘á»‹a chá»‰ 3 cáº¥p cÅ©: xÃ£ â€“ huyá»‡n â€“ tá»‰nh) */
+/* 63 tỉnh / thành phố (địa chỉ 3 cấp cũ: xã – huyện – tỉnh) */
 const PROVINCES = JSON.parse(readFileSync(join(ROOT, "data/provinces.json"), "utf8"));
 
 /* ---------- home ---------- */
@@ -176,7 +174,7 @@ function card(p) {
   const img = p.images[0];
   return `<a class="card" href="p/${p.slug}.html">
     <div class="card-media">
-      <img src="${img}?v=${BUILD_ID}" alt="${esc(p.name)}" loading="lazy" width="400" height="400">
+      <img src="${img}" alt="${esc(p.name)}" loading="lazy" width="400" height="400">
       ${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : pct(p) > 0 ? `<span class="badge">-${pct(p)}%</span>` : ""}
     </div>
     <div class="card-body">
@@ -186,9 +184,9 @@ function card(p) {
         ${p.oldPrice > p.price ? `<span class="price-old">${money(p.oldPrice)}</span>` : ""}
       </div>
       <div class="card-meta">
-        <span>${stars(5)}</span><span class="dot"></span><span>ÄÃ£ bÃ¡n ${Number(p.sold || 0).toLocaleString("vi-VN")}</span>
+        <span>${stars(5)}</span><span class="dot"></span><span>Đã bán ${Number(p.sold || 0).toLocaleString("vi-VN")}</span>
       </div>
-      <span class="card-cta">Xem &amp; Ä‘áº·t hÃ ng</span>
+      <span class="card-cta">Xem &amp; đặt hàng</span>
     </div>
   </a>`;
 }
@@ -200,13 +198,13 @@ function homePage() {
     const r = (RV.get(p.slug).reviews.find((x) => x.stars === 5)) || RV.get(p.slug).reviews[0];
     return `<div class="review">
         <div class="review-top"><div class="avatar">${esc(initials(r.name))}</div><div><b>${esc(r.name)}</b><div class="stars">${starStr(r.stars)}</div></div></div>
-        <p>â€œ${esc(r.text)}â€</p>
-        <div class="review-sp"><a href="p/${p.slug}.html">${esc(p.name)}</a> Â· ${esc(r.date)}</div>
+        <p>“${esc(r.text)}”</p>
+        <div class="review-sp"><a href="p/${p.slug}.html">${esc(p.name)}</a> · ${esc(r.date)}</div>
       </div>`;
   }).join("\n      ");
   return `${head({
-    title: `${B.name} â€“ ${B.tagline}`,
-    desc: B.desc || "Sáº£n pháº©m chá»n lá»c giÃ¡ táº­n gá»‘c. Giao toÃ n quá»‘c, kiá»ƒm hÃ ng trÆ°á»›c khi thanh toÃ¡n, Ä‘á»•i tráº£ 7 ngÃ y.",
+    title: `${B.name} – ${B.tagline}`,
+    desc: B.desc || "Sản phẩm chọn lọc giá tận gốc. Giao toàn quốc, kiểm hàng trước khi thanh toán, đổi trả 7 ngày.",
     image: PRODUCTS[0] ? PRODUCTS[0].images[0] : "",
     base
   })}
@@ -214,18 +212,18 @@ function homePage() {
 ${header(base)}
 <section class="hero">
   <div class="container hero-in">
-    <span class="eyebrow">${esc(B.heroEyebrow || "ðŸ”¥ Má»›i vá» má»—i tuáº§n")}</span>
-    <h1>${B.heroTitle || "Sáº£n pháº©m cháº¥t lÆ°á»£ng,<br><em>giÃ¡ táº­n gá»‘c</em>"}</h1>
-    <p>${esc(B.heroDesc || "Tuyá»ƒn chá»n nhá»¯ng sáº£n pháº©m Ä‘ang Ä‘Æ°á»£c sÄƒn nhiá»u nháº¥t. GiÃ¡ Ä‘Ã£ gá»“m ship, Ä‘Æ°á»£c kiá»ƒm hÃ ng trÆ°á»›c khi tráº£ tiá»n.")}</p>
+    <span class="eyebrow">${esc(B.heroEyebrow || "🔥 Mới về mỗi tuần")}</span>
+    <h1>${B.heroTitle || "Sản phẩm chất lượng,<br><em>giá tận gốc</em>"}</h1>
+    <p>${esc(B.heroDesc || "Tuyển chọn những sản phẩm đang được săn nhiều nhất. Giá đã gồm ship, được kiểm hàng trước khi trả tiền.")}</p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="#san-pham">${esc(B.heroCta || "Xem sáº£n pháº©m â†“")}</a>
-      <a class="btn btn-ghost" href="tel:${B.phone}">Gá»i tÆ° váº¥n</a>
+      <a class="btn btn-primary" href="#san-pham">${esc(B.heroCta || "Xem sản phẩm ↓")}</a>
+      <a class="btn btn-ghost" href="tel:${B.phone}">Gọi tư vấn</a>
     </div>
     <div class="hero-trust">
-      <span class="chip"><i>âœ“</i> Thanh toÃ¡n khi nháº­n hÃ ng</span>
-      <span class="chip"><i>âœ“</i> Äá»•i tráº£ trong 7 ngÃ y</span>
-      <span class="chip"><i>âœ“</i> Giao 2â€“4 ngÃ y</span>
-      <span class="chip"><i>âœ“</i> Hotline 8hâ€“21h</span>
+      <span class="chip"><i>✓</i> Thanh toán khi nhận hàng</span>
+      <span class="chip"><i>✓</i> Đổi trả trong 7 ngày</span>
+      <span class="chip"><i>✓</i> Giao 2–4 ngày</span>
+      <span class="chip"><i>✓</i> Hotline 8h–21h</span>
     </div>
   </div>
 </section>
@@ -234,8 +232,8 @@ ${header(base)}
   <div class="container">
     <div class="section-head">
       <div>
-        <h2>${esc(B.sectionTitle || "Sáº£n pháº©m Ä‘ang bÃ¡n")}</h2>
-        <p>${esc(B.sectionDesc || "Báº¥m vÃ o sáº£n pháº©m Ä‘á»ƒ xem chi tiáº¿t vÃ  Ä‘áº·t hÃ ng")}</p>
+        <h2>${esc(B.sectionTitle || "Sản phẩm đang bán")}</h2>
+        <p>${esc(B.sectionDesc || "Bấm vào sản phẩm để xem chi tiết và đặt hàng")}</p>
       </div>
     </div>
     <div class="grid">
@@ -246,25 +244,25 @@ ${list}
 
 <section class="section benefits">
   <div class="container">
-    <div class="section-head"><div><h2>Mua á»Ÿ ${esc(B.name)} cÃ³ gÃ¬ khÃ¡c?</h2></div></div>
+    <div class="section-head"><div><h2>Mua ở ${esc(B.name)} có gì khác?</h2></div></div>
     <div class="benefit-grid">
-      <div class="benefit"><div class="benefit-ico">ðŸšš</div><div><b>Ship toÃ n quá»‘c</b><span>Ná»™i thÃ nh 1â€“2 ngÃ y, tá»‰nh 2â€“4 ngÃ y</span></div></div>
-      <div class="benefit"><div class="benefit-ico">ðŸ’µ</div><div><b>COD 100%</b><span>Nháº­n hÃ ng, kiá»ƒm tra rá»“i má»›i tráº£ tiá»n</span></div></div>
-      <div class="benefit"><div class="benefit-ico">ðŸ”„</div><div><b>Äá»•i tráº£ 7 ngÃ y</b><span>Lá»—i do shop, Ä‘á»•i má»›i miá»…n phÃ­</span></div></div>
-      <div class="benefit"><div class="benefit-ico">â˜Žï¸</div><div><b>Há»— trá»£ tháº­t</b><span>Gá»i/Zalo ${esc(B.phoneDisplay)} lÃ  cÃ³ ngÆ°á»i nghe</span></div></div>
+      <div class="benefit"><div class="benefit-ico">🚚</div><div><b>Ship toàn quốc</b><span>Nội thành 1–2 ngày, tỉnh 2–4 ngày</span></div></div>
+      <div class="benefit"><div class="benefit-ico">💵</div><div><b>COD 100%</b><span>Nhận hàng, kiểm tra rồi mới trả tiền</span></div></div>
+      <div class="benefit"><div class="benefit-ico">🔄</div><div><b>Đổi trả 7 ngày</b><span>Lỗi do shop, đổi mới miễn phí</span></div></div>
+      <div class="benefit"><div class="benefit-ico">☎️</div><div><b>Hỗ trợ thật</b><span>Gọi/Zalo ${esc(B.phoneDisplay)} là có người nghe</span></div></div>
     </div>
   </div>
 </section>
 
 <section class="section${FACTORY ? "" : " hidden"}" id="xuong-may"${FACTORY ? "" : " hidden"}>
   <div class="container">
-    <div class="section-head"><div><h2>XÆ°á»Ÿng may tháº­t, quay táº¡i xÆ°á»Ÿng</h2><p>HÃ ng lÃ m táº¡i xÆ°á»Ÿng, khÃ´ng qua trung gian â€” nÃªn giÃ¡ má»›i ráº» Ä‘Æ°á»£c nhÆ° váº­y</p></div><a href="#san-pham">Xem sáº£n pháº©m</a></div>
+    <div class="section-head"><div><h2>Xưởng may thật, quay tại xưởng</h2><p>Hàng làm tại xưởng, không qua trung gian — nên giá mới rẻ được như vậy</p></div><a href="#san-pham">Xem sản phẩm</a></div>
     ${FACTORY ? `<div class="factory-video" id="factoryVideoWrap">
-      <video id="factoryVideo" poster="${base}/${FACTORY.poster}?v=${BUILD_ID}" data-src="${base}/${FACTORY.src}?v=${BUILD_ID}" preload="none" playsinline webkit-playsinline x5-playsinline="true" x5-video-player-type="h5" muted></video>
-      <button class="video-cover" id="factoryPlay" type="button" aria-label="Xem video xÆ°á»Ÿng may">
-        <span class="video-cover-ico">â–¶</span>
-        <span class="video-cover-tx">Xem video xÆ°á»Ÿng may</span>
-        <span class="video-cover-sub">Video 24 giÃ¢y Â· quay táº¡i xÆ°á»Ÿng</span>
+      <video id="factoryVideo" poster="${base}/${FACTORY.poster}" data-src="${base}/${FACTORY.src}" preload="none" playsinline webkit-playsinline x5-playsinline="true" x5-video-player-type="h5" muted></video>
+      <button class="video-cover" id="factoryPlay" type="button" aria-label="Xem video xưởng may">
+        <span class="video-cover-ico">▶</span>
+        <span class="video-cover-tx">Xem video xưởng may</span>
+        <span class="video-cover-sub">Video 24 giây · quay tại xưởng</span>
       </button>
     </div>` : ""}
   </div>
@@ -272,7 +270,7 @@ ${list}
 
 <section class="section">
   <div class="container">
-    <div class="section-head"><div><h2>KhÃ¡ch Ä‘Ã£ mua nÃ³i gÃ¬</h2><p>ÄÃ¡nh giÃ¡ tá»« khÃ¡ch Ä‘Ã£ nháº­n hÃ ng</p></div><a href="#san-pham">Xem sáº£n pháº©m</a></div>
+    <div class="section-head"><div><h2>Khách đã mua nói gì</h2><p>Đánh giá từ khách đã nhận hàng</p></div><a href="#san-pham">Xem sản phẩm</a></div>
     <div class="review-grid">
       ${homeRv}
     </div>
@@ -281,13 +279,13 @@ ${list}
 
 <section class="section" id="faq">
   <div class="container">
-    <div class="section-head"><div><h2>CÃ¢u há»i thÆ°á»ng gáº·p</h2></div></div>
+    <div class="section-head"><div><h2>Câu hỏi thường gặp</h2></div></div>
     <div class="faq">
-      <details open><summary>TÃ´i cÃ³ Ä‘Æ°á»£c kiá»ƒm hÃ ng trÆ°á»›c khi thanh toÃ¡n khÃ´ng?</summary><p>CÃ³. Báº¡n Ä‘Æ°á»£c má»Ÿ kiá»ƒm tra sáº£n pháº©m cÃ¹ng nhÃ¢n viÃªn giao hÃ ng trÆ°á»›c khi tráº£ tiá»n.</p></details>
-      <details><summary>Bao lÃ¢u thÃ¬ nháº­n Ä‘Æ°á»£c hÃ ng?</summary><p>Ná»™i thÃ nh HÃ  Ná»™i/TP.HCM: 1â€“2 ngÃ y. CÃ¡c tá»‰nh khÃ¡c: 2â€“4 ngÃ y lÃ m viá»‡c.</p></details>
-      <details><summary>PhÃ­ ship bao nhiÃªu?</summary><p>Miá»…n phÃ­ ship cho Ä‘Æ¡n tá»« 299.000Ä‘. ÄÆ¡n nhá» hÆ¡n phÃ­ ship 25.000Ä‘ toÃ n quá»‘c.</p></details>
-      <details><summary>HÃ ng lá»—i thÃ¬ sao?</summary><p>Báº¡n chá»¥p áº£nh gá»­i Zalo ${esc(B.phoneDisplay)} trong 7 ngÃ y, shop Ä‘á»•i má»›i hoáº·c hoÃ n tiá»n.</p></details>
-      <details><summary>Äáº·t hÃ ng báº±ng cÃ¡ch nÃ o?</summary><p>Chá»n sáº£n pháº©m â†’ Ä‘iá»n tÃªn, sá»‘ Ä‘iá»‡n thoáº¡i, Ä‘á»‹a chá»‰ â†’ báº¥m â€œÄáº·t hÃ ngâ€. Shop gá»i xÃ¡c nháº­n trong 15 phÃºt.</p></details>
+      <details open><summary>Tôi có được kiểm hàng trước khi thanh toán không?</summary><p>Có. Bạn được mở kiểm tra sản phẩm cùng nhân viên giao hàng trước khi trả tiền.</p></details>
+      <details><summary>Bao lâu thì nhận được hàng?</summary><p>Nội thành Hà Nội/TP.HCM: 1–2 ngày. Các tỉnh khác: 2–4 ngày làm việc.</p></details>
+      <details><summary>Phí ship bao nhiêu?</summary><p>Miễn phí ship cho đơn từ 299.000đ. Đơn nhỏ hơn phí ship 25.000đ toàn quốc.</p></details>
+      <details><summary>Hàng lỗi thì sao?</summary><p>Bạn chụp ảnh gửi Zalo ${esc(B.phoneDisplay)} trong 7 ngày, shop đổi mới hoặc hoàn tiền.</p></details>
+      <details><summary>Đặt hàng bằng cách nào?</summary><p>Chọn sản phẩm → điền tên, số điện thoại, địa chỉ → bấm “Đặt hàng”. Shop gọi xác nhận trong 15 phút.</p></details>
     </div>
   </div>
 </section>
@@ -305,29 +303,25 @@ function productPage(p, index) {
   const hasVideo = !!p.video;
   const vPoster = p.videoPoster || p.images[0];
   const thumbs = (hasVideo ? `
-      <button class="thumb thumb-video is-active" data-video="${base}/${p.video}?v=${BUILD_ID}" data-poster="${base}/${vPoster}?v=${BUILD_ID}" aria-label="Video sáº£n pháº©m"><img src="${base}/${vPoster}?v=${BUILD_ID}" alt="${esc(p.name)} - video" loading="lazy"><span class="thumb-play">â–¶</span></button>` : "")
+      <button class="thumb thumb-video is-active" data-video="${base}/${p.video}" data-poster="${base}/${vPoster}" aria-label="Video sản phẩm"><img src="${base}/${vPoster}" alt="${esc(p.name)} - video" loading="lazy"><span class="thumb-play">▶</span></button>` : "")
     + p.images.map((src, i) => `
-      <button class="thumb${!hasVideo && i === 0 ? " is-active" : ""}" data-idx="${i}" data-src="${base}/${src}?v=${BUILD_ID}" aria-label="áº¢nh ${i + 1}"><img src="${base}/${src}?v=${BUILD_ID}" alt="${esc(p.name)} - áº£nh ${i + 1}" loading="lazy"></button>`).join("");
+      <button class="thumb${!hasVideo && i === 0 ? " is-active" : ""}" data-idx="${i}" data-src="${base}/${src}" aria-label="Ảnh ${i + 1}"><img src="${base}/${src}" alt="${esc(p.name)} - ảnh ${i + 1}" loading="lazy"></button>`).join("");
   const normOpt = (o) => {
     if (typeof o === "string") o = { value: o };
     const price = (o.price != null && o.price !== "") ? Number(o.price) : p.price;
-    const oldPrice = (o.oldPrice != null && o.oldPrice !== "") ? Number(o.oldPrice) : (p.oldPrice || 0);
     const count = (o.count != null && o.count !== "") ? Number(o.count) : 1;
-    const shipping = (o.shipping != null && o.shipping !== "") ? Number(o.shipping) : 0;
-    return { value: String(o.value || o.name || o.label || "").trim(), price, oldPrice, count, shipping };
+    return { value: String(o.value || o.name || o.label || "").trim(), price, count };
   };
   const normGroups = (p.variants || []).map((g) => ({
-    name: g.name || "PhÃ¢n loáº¡i",
+    name: g.name || "Phân loại",
     options: (g.options || []).map(normOpt).filter((o) => o.value)
   })).filter((g) => g.options.length);
   const firstPrice = normGroups.length && normGroups[0].options.length ? normGroups[0].options[0].price : p.price;
-  const firstOldPrice = normGroups.length && normGroups[0].options.length ? normGroups[0].options[0].oldPrice : (p.oldPrice || 0);
-  const firstShipping = normGroups.length && normGroups[0].options.length ? normGroups[0].options[0].shipping : 0;
   const variantHtml = normGroups.map((g) => `
       <div class="opt-group">
         <label class="opt-label">${esc(g.name)}: <span data-selected="${esc(g.name)}">${esc(g.options[0].value)}</span></label>
         <div class="chips" data-group="${esc(g.name)}">
-          ${g.options.map((o, i) => `<button type="button" class="opt${i === 0 ? " is-active" : ""}" data-value="${esc(o.value)}" data-price="${o.price}" data-oldprice="${o.oldPrice}" data-shipping="${o.shipping}" data-count="${o.count}">${esc(o.value)}${o.price !== firstPrice ? ` Â· ${money(o.price)}` : ""}</button>`).join("")}
+          ${g.options.map((o, i) => `<button type="button" class="opt${i === 0 ? " is-active" : ""}" data-value="${esc(o.value)}" data-price="${o.price}" data-count="${o.count}">${esc(o.value)}${o.price !== p.price ? ` · ${money(o.price)}` : ""}</button>`).join("")}
         </div>
       </div>`).join("");
 
@@ -337,27 +331,27 @@ function productPage(p, index) {
 
   const related = PRODUCTS.filter((x) => x.slug !== p.slug).slice(0, 4).map((x) => `
       <a class="card" href="../${x.slug}/">
-        <div class="card-media"><img src="${base}/${x.images[0]}?v=${BUILD_ID}" alt="${esc(x.name)}" loading="lazy"></div>
+        <div class="card-media"><img src="${base}/${x.images[0]}" alt="${esc(x.name)}" loading="lazy"></div>
         <div class="card-body"><h3 class="card-title">${esc(x.name)}</h3>
         <div class="card-price"><span class="price">${money(x.price)}</span></div></div>
       </a>`).join("");
 
   return `${head({
-    title: `${p.name} â€“ ${money(firstPrice + firstShipping)} | ${B.name}`,
-    desc: (p.subtitle || p.name) + " Giao toÃ n quá»‘c, kiá»ƒm hÃ ng trÆ°á»›c khi thanh toÃ¡n, Ä‘á»•i tráº£ 7 ngÃ y.",
+    title: `${p.name} – ${money(p.price)} | ${B.name}`,
+    desc: (p.subtitle || p.name) + " Giao toàn quốc, kiểm hàng trước khi thanh toán, đổi trả 7 ngày.",
     image: p.images[0],
     base
   })}
 <body data-product-id="${esc(p.offerId || p.slug)}">
 ${header(base)}
-<div class="container breadcrumb"><a href="${base}/index.html">Trang chá»§</a> / <a href="${base}/index.html#san-pham">Sáº£n pháº©m</a> / <span>${esc(p.name)}</span></div>
+<div class="container breadcrumb"><a href="${base}/index.html">Trang chủ</a> / <a href="${base}/index.html#san-pham">Sản phẩm</a> / <span>${esc(p.name)}</span></div>
 
 <div class="container pdp">
   <div class="pdp-gallery">
     <div class="gallery-main" id="galleryMain">
-      <img id="galleryImg" src="${base}/${p.images[0]}?v=${BUILD_ID}" alt="${esc(p.name)}" width="800" height="800"${hasVideo ? " hidden" : ""}>
-      ${hasVideo ? `<video id="galleryVideo" class="gallery-video" src="${base}/${p.video}?v=${BUILD_ID}" poster="${base}/${vPoster}?v=${BUILD_ID}" autoplay muted controls playsinline webkit-playsinline x5-playsinline="true" x5-video-player-type="h5"></video>
-      <button class="gallery-play" id="galleryPlay" type="button" aria-label="Xem video sáº£n pháº©m" hidden><span class="gallery-play-ico">â–¶</span><span class="gallery-play-tx">Xem video sáº£n pháº©m</span></button>
+      <img id="galleryImg" src="${base}/${p.images[0]}" alt="${esc(p.name)}" width="800" height="800"${hasVideo ? " hidden" : ""}>
+      ${hasVideo ? `<video id="galleryVideo" class="gallery-video" src="${base}/${p.video}" poster="${base}/${vPoster}" autoplay muted controls playsinline webkit-playsinline x5-playsinline="true" x5-video-player-type="h5"></video>
+      <button class="gallery-play" id="galleryPlay" type="button" aria-label="Xem video sản phẩm" hidden><span class="gallery-play-ico">▶</span><span class="gallery-play-tx">Xem video sản phẩm</span></button>
       <span class="gallery-progress" id="galleryProgress" hidden><i></i></span>` : ""}
       ${p.images.length > 1 ? `<span class="gallery-count" id="galleryCount">${hasVideo ? "Video" : "1/" + p.images.length}</span>` : ""}
     </div>
@@ -368,73 +362,78 @@ ${header(base)}
     ${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : ""}
     <h1>${esc(p.name)}</h1>
     <p class="pdp-sub">${esc(p.subtitle || "")}</p>
-    <div class="pdp-rating"><span class="stars">${starStr(Math.round(rv.rating))}</span> <b>${rv.rating.toFixed(1).replace(".", ",")}/5</b> <span>Â·</span> <a href="#danh-gia">${rv.total.toLocaleString("vi-VN")} lÆ°á»£t Ä‘Ã¡nh giÃ¡</a> <span>Â·</span> <span>${Number(p.sold || 0).toLocaleString("vi-VN")} Ä‘Ã£ bÃ¡n</span></div>
+    <div class="pdp-rating"><span class="stars">${starStr(Math.round(rv.rating))}</span> <b>${rv.rating.toFixed(1).replace(".", ",")}/5</b> <span>·</span> <a href="#danh-gia">${rv.total.toLocaleString("vi-VN")} lượt đánh giá</a> <span>·</span> <span>${Number(p.sold || 0).toLocaleString("vi-VN")} đã bán</span></div>
 
     <div class="price-box">
       <div class="row">
-        <span class="price">${money(firstPrice)}</span>
-        ${firstOldPrice > firstPrice ? `<span class="price-old">${money(firstOldPrice)}</span>` : ""}
-        ${firstOldPrice > firstPrice ? `<span class="save">Tiáº¿t kiá»‡m ${Math.max(0, Math.round((1 - firstPrice / firstOldPrice) * 100))}%</span>` : ""}
+        <span class="price">${money(p.price)}</span>
+        ${p.oldPrice > p.price ? `<span class="price-old">${money(p.oldPrice)}</span>` : ""}
+        ${p.oldPrice > p.price ? `<span class="save">Tiết kiệm ${pct(p)}%</span>` : ""}
       </div>
-      <div class="note">${esc(p.shippingNote || "Gia da gom VAT . Mien phi ship don tu 179K")}</div>
+      <div class="note">Giá đã gồm VAT · Miễn phí ship đơn từ 299K</div>
     </div>
 
     ${variantHtml}
 
-    <input id="qtyInput" type="hidden" value="1" min="1" max="99" data-unit="${firstPrice}" data-shipping="${firstShipping}" aria-label="Số lượng">
-
-    <div class="form-total"><span>Táº¡m tÃ­nh (COD)</span><b id="formTotal">${money(firstPrice + firstShipping)}</b></div>
+    <div class="opt-group">
+      <label class="opt-label">Số lượng</label>
+      <div class="qty">
+        <button type="button" data-step="-1" aria-label="Giảm">−</button>
+        <input id="qtyInput" type="number" inputmode="numeric" value="1" min="1" max="99" data-unit="${firstPrice}" aria-label="Số lượng">
+        <button type="button" data-step="1" aria-label="Tăng">+</button>
+      </div>
+    </div>
 
     <div class="pdp-buy">
-      <a class="btn btn-primary" href="#orderForm">Äáº·t hÃ ng ngay</a>
+      <a class="btn btn-primary" href="#orderForm">Đặt hàng ngay</a>
     </div>
-    <div class="micro"><span><i>âœ“</i> Thanh toÃ¡n khi nháº­n</span><span><i>âœ“</i> Äá»•i tráº£ 7 ngÃ y</span><span><i>âœ“</i> Giao 2â€“4 ngÃ y</span></div>
+    <div class="micro"><span><i>✓</i> Thanh toán khi nhận</span><span><i>✓</i> Đổi trả 7 ngày</span><span><i>✓</i> Giao 2–4 ngày</span></div>
 
     <div class="order-card" id="orderFormWrap">
-      <h3>Äáº·t hÃ ng nhanh</h3>
-      <p class="hint">Äiá»n thÃ´ng tin, shop gá»i xÃ¡c nháº­n trong 15 phÃºt.</p>
+      <h3>Đặt hàng nhanh</h3>
+      <p class="hint">Điền thông tin, shop gọi xác nhận trong 15 phút.</p>
       <form id="orderForm" data-product="${esc(p.name)}" novalidate>
         <div class="field">
-          <label for="fName">Há» vÃ  tÃªn <span>*</span></label>
-          <input id="fName" name="name" type="text" placeholder="VD: Nguyá»…n Thá»‹ Lan" autocomplete="name" required>
+          <label for="fName">Họ và tên <span>*</span></label>
+          <input id="fName" name="name" type="text" placeholder="VD: Nguyễn Thị Lan" autocomplete="name" required>
         </div>
         <div class="field">
-          <label for="fPhone">Sá»‘ Ä‘iá»‡n thoáº¡i <span>*</span></label>
+          <label for="fPhone">Số điện thoại <span>*</span></label>
           <input id="fPhone" name="phone" type="tel" inputmode="numeric" placeholder="VD: 0982467019" autocomplete="tel" required>
         </div>
         <div class="field">
-          <label for="fStreet">Sá»‘ nhÃ , tÃªn Ä‘Æ°á»ng <span>*</span></label>
-          <input id="fStreet" name="street" type="text" placeholder="VD: 12 Nguyá»…n VÄƒn Linh" autocomplete="address-line1" required>
+          <label for="fStreet">Số nhà, tên đường <span>*</span></label>
+          <input id="fStreet" name="street" type="text" placeholder="VD: 12 Nguyễn Văn Linh" autocomplete="address-line1" required>
         </div>
         <div class="field">
-          <label for="fProvince">Tá»‰nh / ThÃ nh phá»‘ <span>*</span></label>
+          <label for="fProvince">Tỉnh / Thành phố <span>*</span></label>
           <select id="fProvince" name="province" autocomplete="address-level1" required>
-            <option value="">â€” Chá»n tá»‰nh / thÃ nh phá»‘ â€”</option>
+            <option value="">— Chọn tỉnh / thành phố —</option>
             ${PROVINCES.map((x) => `<option value="${x.code}" data-name="${esc(x.short)}">${esc(x.short)}</option>`).join("")}
           </select>
         </div>
         <div class="field-2">
           <div class="field">
-            <label for="fDistrict">Quáº­n / Huyá»‡n <span>*</span></label>
+            <label for="fDistrict">Quận / Huyện <span>*</span></label>
             <select id="fDistrict" name="district" autocomplete="address-level2" required disabled>
-              <option value="">â€” Chá»n quáº­n / huyá»‡n â€”</option>
+              <option value="">— Chọn quận / huyện —</option>
             </select>
           </div>
           <div class="field">
-            <label for="fWard">XÃ£ / PhÆ°á»ng <span>*</span></label>
+            <label for="fWard">Xã / Phường <span>*</span></label>
             <select id="fWard" name="ward" autocomplete="address-line2" required disabled>
-              <option value="">â€” Chá»n xÃ£ / phÆ°á»ng â€”</option>
+              <option value="">— Chọn xã / phường —</option>
             </select>
           </div>
         </div>
         <div class="field">
-          <label for="fNote">Ghi chÃº (khÃ´ng báº¯t buá»™c)</label>
-          <textarea id="fNote" name="note" placeholder="MÃ u sáº¯c / size / giá» giao hÃ ngâ€¦"></textarea>
+          <label for="fNote">Ghi chú (không bắt buộc)</label>
+          <textarea id="fNote" name="note" placeholder="Màu sắc / size / giờ giao hàng…"></textarea>
         </div>
-        <div class="form-total"><span>Táº¡m tÃ­nh (COD)</span><b id="formTotal">${money(p.price)}</b></div>
-        <button class="btn btn-primary btn-block" type="submit" id="submitBtn">Äáº¶T HÃ€NG â€“ Thanh toÃ¡n khi nháº­n</button>
+        <div class="form-total"><span>Tạm tính (COD)</span><b id="formTotal">${money(p.price)}</b></div>
+        <button class="btn btn-primary btn-block" type="submit" id="submitBtn">ĐẶT HÀNG – Thanh toán khi nhận</button>
         <p class="form-err" id="formErr"></p>
-        <p class="form-note">Báº±ng viá»‡c Ä‘áº·t hÃ ng, báº¡n Ä‘á»“ng Ã½ vá»›i chÃ­nh sÃ¡ch Ä‘á»•i tráº£ &amp; báº£o máº­t cá»§a shop.</p>
+        <p class="form-note">Bằng việc đặt hàng, bạn đồng ý với chính sách đổi trả &amp; bảo mật của shop.</p>
       </form>
     </div>
   </div>
@@ -442,80 +441,80 @@ ${header(base)}
 
 <div class="container">
   <div class="panel">
-    <h3>MÃ´ táº£ sáº£n pháº©m</h3>
-    <div class="prose">${p.description || "<p>Äang cáº­p nháº­t.</p>"}</div>
-    ${specs ? `<h3 style="margin-top:18px">ThÃ´ng sá»‘</h3>${specs}` : ""}
-    ${p.images.length > 1 ? `<h3 style="margin-top:22px">Album áº£nh (${p.images.length})</h3>
-    <div class="album">${p.images.map((src, i) => `<button class="album-item" type="button" data-idx="${i}"><img src="${base}/${src}?v=${BUILD_ID}" alt="${esc(p.name)} ${i + 1}" loading="lazy"></button>`).join("")}</div>` : ""}
+    <h3>Mô tả sản phẩm</h3>
+    <div class="prose">${p.description || "<p>Đang cập nhật.</p>"}</div>
+    ${specs ? `<h3 style="margin-top:18px">Thông số</h3>${specs}` : ""}
+    ${p.images.length > 1 ? `<h3 style="margin-top:22px">Album ảnh (${p.images.length})</h3>
+    <div class="album">${p.images.map((src, i) => `<button class="album-item" type="button" data-idx="${i}"><img src="${base}/${src}" alt="${esc(p.name)} ${i + 1}" loading="lazy"></button>`).join("")}</div>` : ""}
   </div>
 
   <div class="panel" id="danh-gia">
-    <h3>ÄÃ¡nh giÃ¡ tá»« khÃ¡ch hÃ ng</h3>
+    <h3>Đánh giá từ khách hàng</h3>
     <div class="rv-summary">
       <div class="rv-score">
         <b>${rv.rating.toFixed(1).replace(".", ",")}</b>
         <span class="rv-stars">${starStr(Math.round(rv.rating))}</span>
-        <small>${rv.total.toLocaleString("vi-VN")} lÆ°á»£t Ä‘Ã¡nh giÃ¡</small>
+        <small>${rv.total.toLocaleString("vi-VN")} lượt đánh giá</small>
       </div>
       <div class="rv-bars">
-        ${[5, 4, 3, 2, 1].map((s, i) => `<button type="button" class="rv-bar" data-star="${s}" aria-label="Xem Ä‘Ã¡nh giÃ¡ ${s} sao"><span>${s}â˜…</span><div class="rv-track"><i style="width:${Math.round((rv.dist[i] / rv.total) * 100)}%"></i></div><b>${rv.dist[i].toLocaleString("vi-VN")}</b></button>`).join("")}
+        ${[5, 4, 3, 2, 1].map((s, i) => `<button type="button" class="rv-bar" data-star="${s}" aria-label="Xem đánh giá ${s} sao"><span>${s}★</span><div class="rv-track"><i style="width:${Math.round((rv.dist[i] / rv.total) * 100)}%"></i></div><b>${rv.dist[i].toLocaleString("vi-VN")}</b></button>`).join("")}
       </div>
     </div>
 
     <div class="rv-list" id="rvList" data-slug="${esc(p.slug)}" data-total="${rv.total}" data-count="${rv.reviews.length}" data-shown="${rvFirst}">
       ${rv.reviews.slice(0, rvFirst).map((r) => rvItem(r)).join("")}
     </div>
-    <button type="button" class="rv-more" id="rvMore">Xem thÃªm Ä‘Ã¡nh giÃ¡</button>
-    <p class="rv-note" id="rvNote">Äang hiá»ƒn thá»‹ ${rvFirst} bÃ¬nh luáº­n má»›i nháº¥t Â· tá»•ng ${rv.total.toLocaleString("vi-VN")} lÆ°á»£t Ä‘Ã¡nh giÃ¡</p>
+    <button type="button" class="rv-more" id="rvMore">Xem thêm đánh giá</button>
+    <p class="rv-note" id="rvNote">Đang hiển thị ${rvFirst} bình luận mới nhất · tổng ${rv.total.toLocaleString("vi-VN")} lượt đánh giá</p>
     <p class="rv-reason" id="rvReason" hidden></p>
-    <button type="button" class="rv-reset" id="rvReset" hidden>â† Xem táº¥t cáº£ Ä‘Ã¡nh giÃ¡</button>
+    <button type="button" class="rv-reset" id="rvReset" hidden>← Xem tất cả đánh giá</button>
 
-    <h3 class="rv-form-title">Viáº¿t Ä‘Ã¡nh giÃ¡ cá»§a báº¡n</h3>
+    <h3 class="rv-form-title">Viết đánh giá của bạn</h3>
     <form class="rv-form" id="rvForm">
       <div class="rv-form-row">
-        <input id="rvName" type="text" placeholder="TÃªn cá»§a báº¡n" autocomplete="name" required>
-        <div class="rv-pick" id="rvPick" role="group" aria-label="Chá»n sá»‘ sao">
-          ${[5, 4, 3, 2, 1].map((n) => `<button type="button" class="rv-star is-on" data-star="${n}" aria-label="${n} sao">â˜…</button>`).join("")}
+        <input id="rvName" type="text" placeholder="Tên của bạn" autocomplete="name" required>
+        <div class="rv-pick" id="rvPick" role="group" aria-label="Chọn số sao">
+          ${[5, 4, 3, 2, 1].map((n) => `<button type="button" class="rv-star is-on" data-star="${n}" aria-label="${n} sao">★</button>`).join("")}
         </div>
       </div>
-      <textarea id="rvText" rows="3" placeholder="Chia sáº» cáº£m nháº­n vá» sáº£n pháº©mâ€¦" required></textarea>
-      <button class="btn btn-primary btn-block" type="submit">Gá»­i Ä‘Ã¡nh giÃ¡</button>
+      <textarea id="rvText" rows="3" placeholder="Chia sẻ cảm nhận về sản phẩm…" required></textarea>
+      <button class="btn btn-primary btn-block" type="submit">Gửi đánh giá</button>
     </form>
     <script type="application/json" id="rvData">${JSON.stringify(rv.reviews).replace(/</g, "\\u003c")}</script>
   </div>
 
   <div class="panel">
-    <h3>ChÃ­nh sÃ¡ch mua hÃ ng</h3>
+    <h3>Chính sách mua hàng</h3>
     <div class="prose">
       <ul>
-        <li><b>Thanh toÃ¡n:</b> COD â€“ nháº­n hÃ ng, kiá»ƒm tra rá»“i má»›i tráº£ tiá»n.</li>
-        <li><b>Váº­n chuyá»ƒn:</b> 1â€“2 ngÃ y ná»™i thÃ nh, 2â€“4 ngÃ y cÃ¡c tá»‰nh. Freeship Ä‘Æ¡n tá»« 299K.</li>
-        <li><b>Äá»•i tráº£:</b> 7 ngÃ y náº¿u lá»—i nhÃ  sáº£n xuáº¥t hoáº·c khÃ´ng Ä‘Ãºng mÃ´ táº£.</li>
-        <li><b>Há»— trá»£:</b> Gá»i/Zalo <a href="tel:${B.phone}">${esc(B.phoneDisplay)}</a> (8hâ€“21h).</li>
+        <li><b>Thanh toán:</b> COD – nhận hàng, kiểm tra rồi mới trả tiền.</li>
+        <li><b>Vận chuyển:</b> 1–2 ngày nội thành, 2–4 ngày các tỉnh. Freeship đơn từ 299K.</li>
+        <li><b>Đổi trả:</b> 7 ngày nếu lỗi nhà sản xuất hoặc không đúng mô tả.</li>
+        <li><b>Hỗ trợ:</b> Gọi/Zalo <a href="tel:${B.phone}">${esc(B.phoneDisplay)}</a> (8h–21h).</li>
       </ul>
     </div>
   </div>
 
   <div class="section" style="padding-bottom:0">
-    <div class="section-head"><div><h2>Sáº£n pháº©m khÃ¡c</h2></div><a href="${base}#san-pham">Xem táº¥t cáº£</a></div>
+    <div class="section-head"><div><h2>Sản phẩm khác</h2></div><a href="${base}#san-pham">Xem tất cả</a></div>
     <div class="grid">${related}</div>
   </div>
 </div>
 
 <div class="sticky-buy" id="stickyBuy">
-  <div class="sb-price">Tạm tÃ­nh<b id="sbPrice">${money(firstPrice + firstShipping)}</b></div>
-  <button class="btn btn-primary" id="sbBtn" type="button">Äáº·t hÃ ng</button>
+  <div class="sb-price">Tạm tính<b id="sbPrice">${money(p.price)}</b></div>
+  <button class="btn btn-primary" id="sbBtn" type="button">Đặt hàng</button>
 </div>
 
 <div class="modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal-card">
-    <div class="modal-ico">âœ“</div>
-    <h3 id="modalTitle">Äáº·t hÃ ng thÃ nh cÃ´ng!</h3>
-    <p>Cáº£m Æ¡n báº¡n. Shop sáº½ gá»i xÃ¡c nháº­n trong <b>15 phÃºt</b>.</p>
-    <div class="modal-code" id="modalCode">MÃ£ Ä‘Æ¡n: â€”</div>
+    <div class="modal-ico">✓</div>
+    <h3 id="modalTitle">Đặt hàng thành công!</h3>
+    <p>Cảm ơn bạn. Shop sẽ gọi xác nhận trong <b>15 phút</b>.</p>
+    <div class="modal-code" id="modalCode">Mã đơn: —</div>
     <p id="modalTotal"></p>
-    <a class="btn btn-primary btn-block" href="tel:${B.phone}">Gá»i ${esc(B.phoneDisplay)}</a>
-    <button class="btn btn-ghost btn-block" type="button" data-close-modal>Tiáº¿p tá»¥c xem</button>
+    <a class="btn btn-primary btn-block" href="tel:${B.phone}">Gọi ${esc(B.phoneDisplay)}</a>
+    <button class="btn btn-ghost btn-block" type="button" data-close-modal>Tiếp tục xem</button>
   </div>
 </div>
 
@@ -529,37 +528,37 @@ ${footer(base)}
 function policyPage() {
   const base = ".";
   return `${head({
-    title: `ChÃ­nh sÃ¡ch mua hÃ ng | ${B.name}`,
-    desc: "ChÃ­nh sÃ¡ch Ä‘á»•i tráº£, váº­n chuyá»ƒn, thanh toÃ¡n vÃ  báº£o máº­t thÃ´ng tin táº¡i " + B.name,
+    title: `Chính sách mua hàng | ${B.name}`,
+    desc: "Chính sách đổi trả, vận chuyển, thanh toán và bảo mật thông tin tại " + B.name,
     base
   })}
 <body data-product-id="policy">
 ${header(base)}
 <div class="container" style="padding-top:18px;max-width:820px">
-  <h1 style="font-size:26px;letter-spacing:-.03em;margin:8px 0 4px">ChÃ­nh sÃ¡ch mua hÃ ng</h1>
-  <p style="color:#6b7280;font-size:13.5px;margin:0 0 18px">Ãp dá»¥ng cho má»i Ä‘Æ¡n hÃ ng táº¡i ${esc(B.name)}</p>
+  <h1 style="font-size:26px;letter-spacing:-.03em;margin:8px 0 4px">Chính sách mua hàng</h1>
+  <p style="color:#6b7280;font-size:13.5px;margin:0 0 18px">Áp dụng cho mọi đơn hàng tại ${esc(B.name)}</p>
 
-  <div class="panel" id="doi-tra"><h3>1. Äá»•i tráº£ trong 7 ngÃ y</h3><div class="prose">
-    <p>Sáº£n pháº©m Ä‘Æ°á»£c Ä‘á»•i má»›i hoáº·c hoÃ n tiá»n trong 7 ngÃ y ká»ƒ tá»« khi nháº­n hÃ ng náº¿u: lá»—i do nhÃ  sáº£n xuáº¥t, giao sai máº«u/size, sáº£n pháº©m khÃ´ng Ä‘Ãºng mÃ´ táº£.</p>
-    <p>Sáº£n pháº©m cÃ²n nguyÃªn tem, chÆ°a qua sá»­ dá»¥ng. Vui lÃ²ng gá»­i áº£nh/video qua Zalo <a href="tel:${B.phone}">${esc(B.phoneDisplay)}</a> Ä‘á»ƒ Ä‘Æ°á»£c xá»­ lÃ½ nhanh.</p>
+  <div class="panel" id="doi-tra"><h3>1. Đổi trả trong 7 ngày</h3><div class="prose">
+    <p>Sản phẩm được đổi mới hoặc hoàn tiền trong 7 ngày kể từ khi nhận hàng nếu: lỗi do nhà sản xuất, giao sai mẫu/size, sản phẩm không đúng mô tả.</p>
+    <p>Sản phẩm còn nguyên tem, chưa qua sử dụng. Vui lòng gửi ảnh/video qua Zalo <a href="tel:${B.phone}">${esc(B.phoneDisplay)}</a> để được xử lý nhanh.</p>
   </div></div>
 
-  <div class="panel" id="van-chuyen"><h3>2. Váº­n chuyá»ƒn</h3><div class="prose">
-    <p>Ná»™i thÃ nh HÃ  Ná»™i &amp; TP.HCM: 1â€“2 ngÃ y. CÃ¡c tá»‰nh khÃ¡c: 2â€“4 ngÃ y lÃ m viá»‡c.</p>
-    <p>PhÃ­ ship 25.000Ä‘, miá»…n phÃ­ cho Ä‘Æ¡n tá»« 299.000Ä‘. ÄÆ¡n Ä‘Æ°á»£c kiá»ƒm tra trÆ°á»›c khi thanh toÃ¡n.</p>
+  <div class="panel" id="van-chuyen"><h3>2. Vận chuyển</h3><div class="prose">
+    <p>Nội thành Hà Nội &amp; TP.HCM: 1–2 ngày. Các tỉnh khác: 2–4 ngày làm việc.</p>
+    <p>Phí ship 25.000đ, miễn phí cho đơn từ 299.000đ. Đơn được kiểm tra trước khi thanh toán.</p>
   </div></div>
 
-  <div class="panel" id="thanh-toan"><h3>3. Thanh toÃ¡n</h3><div class="prose">
-    <p>HÃ¬nh thá»©c chÃ­nh: COD â€“ thanh toÃ¡n tiá»n máº·t cho nhÃ¢n viÃªn giao hÃ ng sau khi kiá»ƒm tra sáº£n pháº©m.</p>
-    <p>Vá»›i Ä‘Æ¡n giÃ¡ trá»‹ lá»›n, shop cÃ³ thá»ƒ liÃªn há»‡ Ä‘á»ƒ thá»‘ng nháº¥t chuyá»ƒn khoáº£n trÆ°á»›c.</p>
+  <div class="panel" id="thanh-toan"><h3>3. Thanh toán</h3><div class="prose">
+    <p>Hình thức chính: COD – thanh toán tiền mặt cho nhân viên giao hàng sau khi kiểm tra sản phẩm.</p>
+    <p>Với đơn giá trị lớn, shop có thể liên hệ để thống nhất chuyển khoản trước.</p>
   </div></div>
 
-  <div class="panel" id="bao-mat"><h3>4. Báº£o máº­t thÃ´ng tin</h3><div class="prose">
-    <p>ThÃ´ng tin báº¡n cung cáº¥p (tÃªn, sá»‘ Ä‘iá»‡n thoáº¡i, Ä‘á»‹a chá»‰) chá»‰ dÃ¹ng Ä‘á»ƒ xá»­ lÃ½ vÃ  giao Ä‘Æ¡n hÃ ng, khÃ´ng chia sáº» cho bÃªn thá»© ba ngoÃ i Ä‘Æ¡n vá»‹ váº­n chuyá»ƒn.</p>
-    <p>Báº¡n cÃ³ thá»ƒ yÃªu cáº§u xoÃ¡ dá»¯ liá»‡u báº¥t ká»³ lÃºc nÃ o báº±ng cÃ¡ch gá»i hotline.</p>
+  <div class="panel" id="bao-mat"><h3>4. Bảo mật thông tin</h3><div class="prose">
+    <p>Thông tin bạn cung cấp (tên, số điện thoại, địa chỉ) chỉ dùng để xử lý và giao đơn hàng, không chia sẻ cho bên thứ ba ngoài đơn vị vận chuyển.</p>
+    <p>Bạn có thể yêu cầu xoá dữ liệu bất kỳ lúc nào bằng cách gọi hotline.</p>
   </div></div>
 
-  <p style="font-size:13px;color:#6b7280;margin:18px 0 30px">Cáº§n há»— trá»£? Gá»i/Zalo <a href="tel:${B.phone}" style="color:#ff4d1c;font-weight:700">${esc(B.phoneDisplay)}</a> Â· ${esc(B.email)}</p>
+  <p style="font-size:13px;color:#6b7280;margin:18px 0 30px">Cần hỗ trợ? Gọi/Zalo <a href="tel:${B.phone}" style="color:#ff4d1c;font-weight:700">${esc(B.phoneDisplay)}</a> · ${esc(B.email)}</p>
 </div>
 ${footer(base)}
 <script src="${base}/assets/app.js?v=${ASSET_VER}"></script>
@@ -585,8 +584,5 @@ return PRODUCTS.length;
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const n = buildSite();
-  console.log(`âœ“ Build xong: ${n} trang sáº£n pháº©m`);
+  console.log(`✓ Build xong: ${n} trang sản phẩm`);
 }
-
-
-
