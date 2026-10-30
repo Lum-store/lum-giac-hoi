@@ -204,7 +204,7 @@ function homePage() {
   }).join("\n      ");
   return `${head({
     title: `${B.name} – ${B.tagline}`,
-    desc: "Túi xách nữ mini Kelly, kẹp nách, jelly, Boston ren… chọn lọc giá tận gốc. Giao toàn quốc, kiểm hàng trước khi thanh toán, đổi trả 7 ngày.",
+    desc: B.desc || "Sản phẩm chọn lọc giá tận gốc. Giao toàn quốc, kiểm hàng trước khi thanh toán, đổi trả 7 ngày.",
     image: PRODUCTS[0] ? PRODUCTS[0].images[0] : "",
     base
   })}
@@ -212,11 +212,11 @@ function homePage() {
 ${header(base)}
 <section class="hero">
   <div class="container hero-in">
-    <span class="eyebrow">🔥 Túi mới về mỗi tuần</span>
-    <h1>Túi xách nữ xinh,<br><em>chốt đơn trong 30 giây</em></h1>
-    <p>Tuyển chọn những mẫu túi đang được săn nhiều nhất: mini Kelly, kẹp nách, jelly, Boston ren… Giá đã gồm ship, được kiểm hàng trước khi trả tiền.</p>
+    <span class="eyebrow">${esc(B.heroEyebrow || "🔥 Mới về mỗi tuần")}</span>
+    <h1>${B.heroTitle || "Sản phẩm chất lượng,<br><em>giá tận gốc</em>"}</h1>
+    <p>${esc(B.heroDesc || "Tuyển chọn những sản phẩm đang được săn nhiều nhất. Giá đã gồm ship, được kiểm hàng trước khi trả tiền.")}</p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="#san-pham">Xem 10 mẫu túi ↓</a>
+      <a class="btn btn-primary" href="#san-pham">${esc(B.heroCta || "Xem sản phẩm ↓")}</a>
       <a class="btn btn-ghost" href="tel:${B.phone}">Gọi tư vấn</a>
     </div>
     <div class="hero-trust">
@@ -232,8 +232,8 @@ ${header(base)}
   <div class="container">
     <div class="section-head">
       <div>
-        <h2>Sản phẩm đang bán chạy</h2>
-        <p>Bấm vào sản phẩm để xem chi tiết và đặt hàng</p>
+        <h2>${esc(B.sectionTitle || "Sản phẩm đang bán")}</h2>
+        <p>${esc(B.sectionDesc || "Bấm vào sản phẩm để xem chi tiết và đặt hàng")}</p>
       </div>
     </div>
     <div class="grid">
