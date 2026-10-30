@@ -126,7 +126,7 @@
     var prog = $("#galleryProgress");
     var progFill = prog ? $("i", prog) : null;
     if (vid) {
-      vid.loop = true;
+      vid.loop = false;
       vid.muted = true;
       vid.controls = true;
       ["playing", "pause", "ended", "error", "canplay"].forEach(function (ev) {

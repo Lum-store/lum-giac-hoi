@@ -350,7 +350,7 @@ ${header(base)}
   <div class="pdp-gallery">
     <div class="gallery-main" id="galleryMain">
       <img id="galleryImg" src="${base}/${p.images[0]}" alt="${esc(p.name)}" width="800" height="800"${hasVideo ? " hidden" : ""}>
-      ${hasVideo ? `<video id="galleryVideo" class="gallery-video" src="${base}/${p.video}" poster="${base}/${vPoster}" autoplay loop muted controls playsinline webkit-playsinline x5-playsinline="true" x5-video-player-type="h5"></video>
+      ${hasVideo ? `<video id="galleryVideo" class="gallery-video" src="${base}/${p.video}" poster="${base}/${vPoster}" autoplay muted controls playsinline webkit-playsinline x5-playsinline="true" x5-video-player-type="h5"></video>
       <button class="gallery-play" id="galleryPlay" type="button" aria-label="Xem video sản phẩm" hidden><span class="gallery-play-ico">▶</span><span class="gallery-play-tx">Xem video sản phẩm</span></button>
       <span class="gallery-progress" id="galleryProgress" hidden><i></i></span>` : ""}
       ${p.images.length > 1 ? `<span class="gallery-count" id="galleryCount">${hasVideo ? "Video" : "1/" + p.images.length}</span>` : ""}
