@@ -287,11 +287,27 @@
           if (out) out.textContent = btn.getAttribute("data-value") || btn.textContent.trim();
           // cập nhật giá theo biến thể được chọn
           var price = Number(btn.getAttribute("data-price") || 0);
+          var oldPrice = Number(btn.getAttribute("data-oldprice") || 0);
           if (price > 0) {
             var input = $("#qtyInput");
             if (input) { input.setAttribute("data-unit", price); }
             var priceEl = $(".price-box .price");
             if (priceEl) priceEl.textContent = money(price);
+            // giá gốc gạch + % tiết kiệm theo biến thể
+            var row = $(".price-box .row");
+            if (row) {
+              var oldEl = row.querySelector(".price-old");
+              var saveEl = row.querySelector(".save");
+              if (oldPrice > price) {
+                if (!oldEl) { oldEl = document.createElement("span"); oldEl.className = "price-old"; row.appendChild(oldEl); }
+                oldEl.textContent = money(oldPrice);
+                if (!saveEl) { saveEl = document.createElement("span"); saveEl.className = "save"; row.appendChild(saveEl); }
+                saveEl.textContent = "Tiết kiệm " + Math.max(0, Math.round((1 - price / oldPrice) * 100)) + "%";
+              } else {
+                if (oldEl) oldEl.remove();
+                if (saveEl) saveEl.remove();
+              }
+            }
             var syncFn = input && input._sync;
             if (typeof syncFn === "function") syncFn();
           }
