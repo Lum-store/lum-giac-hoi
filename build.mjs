@@ -374,7 +374,7 @@ ${header(base)}
         ${firstOldPrice > firstPrice ? `<span class="price-old">${money(firstOldPrice)}</span>` : ""}
         ${firstOldPrice > firstPrice ? `<span class="save">Tiết kiệm ${Math.max(0, Math.round((1 - firstPrice / firstOldPrice) * 100))}%</span>` : ""}
       </div>
-      <div class="note">Giá đã gồm VAT · Miễn phí ship đơn từ 299K</div>
+      <div class="note">Giá đã gồm VAT · Miễn phí ship đơn từ 179K</div>
     </div>
 
     ${variantHtml}
