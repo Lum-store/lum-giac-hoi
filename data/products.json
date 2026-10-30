@@ -44,25 +44,29 @@
               "value": "1 cái (mua tối thiểu 5 cái)",
               "price": 95000,
               "oldPrice": 290000,
-              "count": 5
+              "count": 5,
+              "shipping": 30000
             },
             {
               "value": "Combo 10 cái",
               "price": 99000,
               "oldPrice": 300000,
-              "count": 10
+              "count": 10,
+              "shipping": 30000
             },
             {
               "value": "Combo 20 cái",
               "price": 179000,
               "oldPrice": 540000,
-              "count": 20
+              "count": 20,
+              "shipping": 0
             },
             {
               "value": "Combo 30 cái",
               "price": 249000,
               "oldPrice": 750000,
-              "count": 30
+              "count": 30,
+              "shipping": 0
             }
           ]
         }
@@ -95,7 +99,8 @@
       ],
       "description": "Bộ giác hơi silicon massage fascia không dùng lửa — thay thế giác hơi truyền thống bằng lửa, an toàn, dễ dùng tại nhà. Silicon mềm mại bám chặt da, tạo lực hút đều, giúp lưu thông khí huyết, giảm đau nhức vai gáy, lưng, đùi. Không cần lửa, không bỏng, phù hợp mọi người. Dùng được cho massage body, đi gió, thư giãn cơ bắp sau tập luyện. Gói 1 cái hoặc combo 10 cái tiết kiệm.",
       "sold": 2947,
-      "reviewTheme": "cupping"
+      "reviewTheme": "cupping",
+      "shippingNote": "Gói 5 & 10 cái: +30.000đ ship · Freeship từ 20 cái"
     }
   ]
 }
