@@ -96,7 +96,7 @@ ${image ? `<meta property="og:image" content="${esc(image)}">` : ""}
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="26" fill="#ff4d1c"/><text x="50" y="70" font-size="58" font-family="Arial" font-weight="bold" fill="#fff" text-anchor="middle">L</text></svg>'
   )}">
 <script>
-window.LUM_CONFIG = ${JSON.stringify({ brand: B.name, phone: B.phone, sheetEndpoint: B.sheetEndpoint || "" })};
+window.LUM_CONFIG = ${JSON.stringify({ brand: B.name, phone: B.phone, sheetEndpoint: B.sheetEndpoint || "", shop: B.shop || "" })};
 ${B.fbPixel ? `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${esc(B.fbPixel)}');fbq('track','PageView');` : ""}
 </script>
 ${extra}
@@ -306,11 +306,22 @@ function productPage(p, index) {
       <button class="thumb thumb-video is-active" data-video="${base}/${p.video}" data-poster="${base}/${vPoster}" aria-label="Video sản phẩm"><img src="${base}/${vPoster}" alt="${esc(p.name)} - video" loading="lazy"><span class="thumb-play">▶</span></button>` : "")
     + p.images.map((src, i) => `
       <button class="thumb${!hasVideo && i === 0 ? " is-active" : ""}" data-idx="${i}" data-src="${base}/${src}" aria-label="Ảnh ${i + 1}"><img src="${base}/${src}" alt="${esc(p.name)} - ảnh ${i + 1}" loading="lazy"></button>`).join("");
-  const variantHtml = (p.variants || []).map((g) => `
+  const normOpt = (o) => {
+    if (typeof o === "string") o = { value: o };
+    const price = (o.price != null && o.price !== "") ? Number(o.price) : p.price;
+    const count = (o.count != null && o.count !== "") ? Number(o.count) : 1;
+    return { value: String(o.value || o.name || o.label || "").trim(), price, count };
+  };
+  const normGroups = (p.variants || []).map((g) => ({
+    name: g.name || "Phân loại",
+    options: (g.options || []).map(normOpt).filter((o) => o.value)
+  })).filter((g) => g.options.length);
+  const firstPrice = normGroups.length && normGroups[0].options.length ? normGroups[0].options[0].price : p.price;
+  const variantHtml = normGroups.map((g) => `
       <div class="opt-group">
-        <label class="opt-label">${esc(g.name)}: <span data-selected="${esc(g.name)}">${esc(g.options[0] || "")}</span></label>
+        <label class="opt-label">${esc(g.name)}: <span data-selected="${esc(g.name)}">${esc(g.options[0].value)}</span></label>
         <div class="chips" data-group="${esc(g.name)}">
-          ${g.options.map((o, i) => `<button type="button" class="opt${i === 0 ? " is-active" : ""}" data-value="${esc(o)}">${esc(o)}</button>`).join("")}
+          ${g.options.map((o, i) => `<button type="button" class="opt${i === 0 ? " is-active" : ""}" data-value="${esc(o.value)}" data-price="${o.price}" data-count="${o.count}">${esc(o.value)}${o.price !== p.price ? ` · ${money(o.price)}` : ""}</button>`).join("")}
         </div>
       </div>`).join("");
 
@@ -368,7 +379,7 @@ ${header(base)}
       <label class="opt-label">Số lượng</label>
       <div class="qty">
         <button type="button" data-step="-1" aria-label="Giảm">−</button>
-        <input id="qtyInput" type="number" inputmode="numeric" value="1" min="1" max="99" data-unit="${p.price}" aria-label="Số lượng">
+        <input id="qtyInput" type="number" inputmode="numeric" value="1" min="1" max="99" data-unit="${firstPrice}" aria-label="Số lượng">
         <button type="button" data-step="1" aria-label="Tăng">+</button>
       </div>
     </div>

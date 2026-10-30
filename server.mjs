@@ -9,7 +9,7 @@ import { buildSite } from "./build.mjs";
 const execFileAsync = promisify(execFile);
 
 const ROOT = process.cwd();
-const PORT = Number(process.env.PORT || 5173);
+const PORT = Number(process.env.PORT || 5174);
 const DATA_FILE = join(ROOT, "data/products.json");
 const IMG_ROOT = join(ROOT, "assets/img");
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";

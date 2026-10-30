@@ -1,565 +1,88 @@
 {
   "brand": {
     "name": "Lụm Store",
-    "tagline": "Lụm deal xịn · Giá tận gốc",
+    "tagline": "Lum deal xịn · Giá tận gốc",
     "phone": "0982467019",
-    "phoneDisplay": "0982 467 019",
     "zalo": "https://zalo.me/0982467019",
     "messenger": "https://m.me/lumstore",
     "email": "hotro@lumstore.vn",
     "address": "Yên Chính, Phong Doanh, Ninh Bình",
     "sheetEndpoint": "https://script.google.com/macros/s/AKfycbzNQ9Neiyrie5w6OQFu_LAz6MfSfgszlPtmGEOjYSBCfm2hlCIatzBsWF3-S3H1I7Hs/exec",
-    "fbPixel": "1490463016261519",
-    "currency": "đ"
+    "fbPixel": "",
+    "shop": "giac-hoi"
   },
   "products": [
     {
-      "slug": "tui-deo-cheo-nu-mini-vuong",
-      "offerId": "1049972189982",
-      "name": "Túi đeo chéo nữ mini vuông khoá móc",
-      "subtitle": "Da mềm · Đựng vừa điện thoại · 6 màu",
-      "price": 299000,
-      "oldPrice": 900000,
-      "sold": 1284,
+      "name": "Giác hơi silicon massage fascia (không dùng lửa)",
+      "slug": "giac-hoi-silicon",
+      "price": 49000,
+      "oldPrice": 147000,
       "badge": "Bán chạy",
-      "active": true,
       "images": [
-        "assets/img/tui-deo-cheo-nu-mini-vuong/1.webp",
-        "assets/img/tui-deo-cheo-nu-mini-vuong/2.webp",
-        "assets/img/tui-deo-cheo-nu-mini-vuong/3.webp",
-        "assets/img/tui-deo-cheo-nu-mini-vuong/4.webp",
-        "assets/img/tui-deo-cheo-nu-mini-vuong/5.webp",
-        "assets/img/tui-deo-cheo-nu-mini-vuong/6.webp",
-        "assets/img/tui-deo-cheo-nu-mini-vuong/7.webp",
-        "assets/img/tui-deo-cheo-nu-mini-vuong/8.webp"
+        "assets/img/giac-hoi-silicon/1.jpg",
+        "assets/img/giac-hoi-silicon/2.jpg",
+        "assets/img/giac-hoi-silicon/3.jpg",
+        "assets/img/giac-hoi-silicon/4.jpg",
+        "assets/img/giac-hoi-silicon/5.jpg",
+        "assets/img/giac-hoi-silicon/6.jpg",
+        "assets/img/giac-hoi-silicon/7.jpg"
       ],
+      "video": "assets/videos/giac-hoi.mp4",
+      "videoPoster": "assets/img/giac-hoi-silicon/1.jpg",
       "variants": [
         {
-          "name": "Màu sắc",
+          "name": "Lựa chọn",
           "options": [
-            "Đen",
-            "Trắng",
-            "Hồng",
-            "Be",
-            "Xanh mint"
+            {
+              "value": "1 cái - Đỏ",
+              "price": 49000,
+              "count": 1
+            },
+            {
+              "value": "1 cái - Đen",
+              "price": 49000,
+              "count": 1
+            },
+            {
+              "value": "Combo 10 cái - Đỏ",
+              "price": 99000,
+              "count": 10
+            },
+            {
+              "value": "Combo 10 cái - Đen",
+              "price": 99000,
+              "count": 10
+            }
           ]
         }
       ],
       "specs": [
         {
           "k": "Chất liệu",
-          "v": "Da PU cao cấp"
+          "v": "Silicon / nhựa dẻo cao cấp, mềm mại"
         },
         {
-          "k": "Kiểu dáng",
-          "v": "Túi vuông mini đeo chéo"
+          "k": "Trọng lượng",
+          "v": "40g/cái"
         },
         {
-          "k": "Kích thước",
-          "v": "Khoảng 18 × 13 × 7 cm"
+          "k": "Xuất xứ",
+          "v": "Chiết Giang, Trung Quốc"
         },
         {
-          "k": "Phù hợp",
-          "v": "Đi làm, đi chơi, dự tiệc"
+          "k": "Màu sắc",
+          "v": "Đỏ, Đen"
+        },
+        {
+          "k": "Số lượng/gói",
+          "v": "1 cái hoặc Combo 10 cái"
+        },
+        {
+          "k": "Công dụng",
+          "v": "Massage, giác hơi, đi gió, thư giãn cơ bắp"
         }
       ],
-      "description": "<p>Túi đeo chéo nữ dáng vuông nhỏ gọn, mặt túi in chữ nổi tinh tế — món phụ kiện \"nhỏ mà có võ\" cho mọi outfit.</p>\n<ul>\n<li>Chất liệu da PU mềm, chống thấm nhẹ, dễ lau sạch.</li>\n<li>Đựng vừa điện thoại 6.7 inch, ví mini, son, chìa khoá.</li>\n<li>Khoá móc kim loại chắc chắn, mở đóng 1 tay.</li>\n<li>Có dây đeo điều chỉnh được: đeo chéo hoặc đeo vai.</li>\n</ul>\n<p>Phù hợp đi làm, đi chơi, đi tiệc — lên hình cực xinh.</p>",
-      "cny": 13,
-      "video": "assets/videos/tui-deo-cheo-nu-mini-vuong.mp4",
-      "videoPoster": "assets/videos/tui-deo-cheo-nu-mini-vuong.jpg"
-    },
-    {
-      "slug": "tui-xach-nu-van-da",
-      "offerId": "901158039349",
-      "name": "Túi xách nữ vân đá cao cấp",
-      "subtitle": "Da vân đá sang chảnh · Đeo chéo hoặc đeo vai",
-      "price": 289000,
-      "oldPrice": 870000,
-      "sold": 963,
-      "badge": "",
-      "active": true,
-      "images": [
-        "assets/img/tui-xach-nu-van-da/1.webp",
-        "assets/img/tui-xach-nu-van-da/2.webp",
-        "assets/img/tui-xach-nu-van-da/3.webp",
-        "assets/img/tui-xach-nu-van-da/4.webp",
-        "assets/img/tui-xach-nu-van-da/5.webp",
-        "assets/img/tui-xach-nu-van-da/6.webp",
-        "assets/img/tui-xach-nu-van-da/7.webp",
-        "assets/img/tui-xach-nu-van-da/8.webp"
-      ],
-      "variants": [
-        {
-          "name": "Màu sắc",
-          "options": [
-            "Đen",
-            "Trắng",
-            "Be",
-            "Đỏ đô"
-          ]
-        }
-      ],
-      "specs": [
-        {
-          "k": "Chất liệu",
-          "v": "Da PU vân đá"
-        },
-        {
-          "k": "Kiểu dáng",
-          "v": "Túi xách / đeo chéo"
-        },
-        {
-          "k": "Kích thước",
-          "v": "Khoảng 24 × 16 × 8 cm"
-        },
-        {
-          "k": "Phù hợp",
-          "v": "Đi làm, dự tiệc, quà tặng"
-        }
-      ],
-      "description": "<p>Mẫu túi vân đá (stone pattern) đang được săn nhiều nhất — bề mặt da in vân nổi, nhìn sang hơn hẳn tầm giá.</p>\n<ul>\n<li>Da PU vân đá dày dặn, form đứng, không bị nhăn.</li>\n<li>2 ngăn chính + ngăn khoá kéo phụ, có ngăn điện thoại.</li>\n<li>Dây đeo tháo rời: xách tay, đeo vai hay đeo chéo đều được.</li>\n<li>Hợp đi làm, đi tiệc, làm quà tặng.</li>\n</ul>",
-      "cny": 12,
-      "video": "assets/videos/tui-xach-nu-van-da.mp4",
-      "videoPoster": "assets/videos/tui-xach-nu-van-da.jpg"
-    },
-    {
-      "slug": "tui-deo-cheo-nu-da-mem",
-      "offerId": "1048061900102",
-      "name": "Túi đeo chéo nữ da mềm khoá móc",
-      "subtitle": "Dáng yên ngựa · Đựng nhiều mà vẫn gọn",
-      "price": 279000,
-      "oldPrice": 840000,
-      "sold": 745,
-      "badge": "",
-      "active": true,
-      "images": [
-        "assets/img/tui-deo-cheo-nu-da-mem/1.webp",
-        "assets/img/tui-deo-cheo-nu-da-mem/2.webp",
-        "assets/img/tui-deo-cheo-nu-da-mem/3.webp",
-        "assets/img/tui-deo-cheo-nu-da-mem/4.webp",
-        "assets/img/tui-deo-cheo-nu-da-mem/5.webp",
-        "assets/img/tui-deo-cheo-nu-da-mem/6.webp",
-        "assets/img/tui-deo-cheo-nu-da-mem/7.webp",
-        "assets/img/tui-deo-cheo-nu-da-mem/8.webp"
-      ],
-      "variants": [
-        {
-          "name": "Màu sắc",
-          "options": [
-            "Đen",
-            "Be",
-            "Nâu",
-            "Hồng"
-          ]
-        }
-      ],
-      "specs": [
-        {
-          "k": "Chất liệu",
-          "v": "Da PU mềm"
-        },
-        {
-          "k": "Kiểu dáng",
-          "v": "Túi yên ngựa đeo chéo"
-        },
-        {
-          "k": "Kích thước",
-          "v": "Khoảng 22 × 15 × 8 cm"
-        },
-        {
-          "k": "Phù hợp",
-          "v": "Đi học, đi làm, đi chơi"
-        }
-      ],
-      "description": "<p>Túi dáng yên ngựa (saddle bag) với khoá móc kim loại — thiết kế tối giản nhưng cực dễ phối đồ.</p>\n<ul>\n<li>Da PU mềm, bề mặt mịn, chống xước nhẹ.</li>\n<li>Lòng túi rộng hơn vẻ ngoài: đựng được ví, điện thoại, khăn giấy, mỹ phẩm.</li>\n<li>Khoá móc chắc, dây đeo điều chỉnh 90–120 cm.</li>\n<li>Phù hợp phong cách Hàn – tối giản, đi học hay đi làm.</li>\n</ul>",
-      "cny": 11,
-      "video": "assets/videos/tui-deo-cheo-nu-da-mem.mp4",
-      "videoPoster": "assets/videos/tui-deo-cheo-nu-da-mem.jpg"
-    },
-    {
-      "slug": "tui-mini-kelly-nu",
-      "offerId": "659042043496",
-      "name": "Túi mini Kelly nữ hot trend",
-      "subtitle": "Dáng Kelly cổ điển · Nhỏ xinh đựng vừa điện thoại",
-      "price": 265000,
-      "oldPrice": 800000,
-      "sold": 2103,
-      "badge": "Hot",
-      "active": true,
-      "images": [
-        "assets/img/tui-mini-kelly-nu/1.webp",
-        "assets/img/tui-mini-kelly-nu/2.webp",
-        "assets/img/tui-mini-kelly-nu/3.webp",
-        "assets/img/tui-mini-kelly-nu/4.webp",
-        "assets/img/tui-mini-kelly-nu/5.webp",
-        "assets/img/tui-mini-kelly-nu/6.webp",
-        "assets/img/tui-mini-kelly-nu/7.webp"
-      ],
-      "variants": [
-        {
-          "name": "Màu sắc",
-          "options": [
-            "Đen",
-            "Trắng",
-            "Be",
-            "Hồng phấn"
-          ]
-        }
-      ],
-      "specs": [
-        {
-          "k": "Chất liệu",
-          "v": "Da PU form cứng"
-        },
-        {
-          "k": "Kiểu dáng",
-          "v": "Túi mini Kelly"
-        },
-        {
-          "k": "Kích thước",
-          "v": "Khoảng 20 × 14 × 8 cm"
-        },
-        {
-          "k": "Phù hợp",
-          "v": "Dự tiệc, đi chơi, quà tặng"
-        }
-      ],
-      "description": "<p>Phiên bản mini của mẫu túi Kelly huyền thoại — form cứng, nắp gài khoá, lên hình cực Tây.</p>\n<ul>\n<li>Form đứng, giữ dáng tốt, không bị bai.</li>\n<li>Đeo chéo nhờ dây dài kèm theo, hoặc xách tay.</li>\n<li>Kích thước nhỏ nhưng đựng được điện thoại, son, ví mini.</li>\n<li>Món quà tặng được nhiều khách chọn nhất.</li>\n</ul>",
-      "cny": 8.3,
-      "video": "assets/videos/tui-mini-kelly-nu.mp4",
-      "videoPoster": "assets/videos/tui-mini-kelly-nu.jpg"
-    },
-    {
-      "slug": "tui-kep-nach-nu-han-quoc",
-      "offerId": "738680473446",
-      "name": "Túi kẹp nách nữ Hàn Quốc vân đá",
-      "subtitle": "Kẹp nách trendy · Nhẹ, mềm, đựng vừa điện thoại",
-      "price": 250000,
-      "oldPrice": 750000,
-      "sold": 1560,
-      "badge": "Giá sốc",
-      "active": true,
-      "images": [
-        "assets/img/tui-kep-nach-nu-han-quoc/1.webp",
-        "assets/img/tui-kep-nach-nu-han-quoc/2.webp",
-        "assets/img/tui-kep-nach-nu-han-quoc/3.webp",
-        "assets/img/tui-kep-nach-nu-han-quoc/4.webp",
-        "assets/img/tui-kep-nach-nu-han-quoc/5.webp",
-        "assets/img/tui-kep-nach-nu-han-quoc/6.webp",
-        "assets/img/tui-kep-nach-nu-han-quoc/7.webp",
-        "assets/img/tui-kep-nach-nu-han-quoc/8.webp",
-        "assets/img/tui-kep-nach-nu-han-quoc/9.webp",
-        "assets/img/tui-kep-nach-nu-han-quoc/10.webp"
-      ],
-      "variants": [
-        {
-          "name": "Màu sắc",
-          "options": [
-            "Đen",
-            "Trắng",
-            "Be",
-            "Xanh rêu"
-          ]
-        }
-      ],
-      "specs": [
-        {
-          "k": "Chất liệu",
-          "v": "Da PU mềm"
-        },
-        {
-          "k": "Kiểu dáng",
-          "v": "Túi kẹp nách"
-        },
-        {
-          "k": "Kích thước",
-          "v": "Khoảng 25 × 14 × 6 cm"
-        },
-        {
-          "k": "Phù hợp",
-          "v": "Đi chơi, cafe, dạo phố"
-        }
-      ],
-      "description": "<p>Túi kẹp nách (underarm bag) đang là item \"must-have\" của mùa này — nhỏ gọn, đeo sát người, tôn dáng cực xinh.</p>\n<ul>\n<li>Chất liệu da mềm, trọng lượng nhẹ, đeo cả ngày không mỏi vai.</li>\n<li>Dây ngắn kẹp nách, có thể gắn dây dài để đeo chéo.</li>\n<li>Màu trơn dễ phối, hợp cả đồ công sở lẫn đồ đi chơi.</li>\n</ul>",
-      "cny": 3.2,
-      "video": "assets/videos/tui-kep-nach-nu-han-quoc.mp4",
-      "videoPoster": "assets/videos/tui-kep-nach-nu-han-quoc.jpg"
-    },
-    {
-      "slug": "tui-jelly-mini-trong-suot",
-      "offerId": "750220507665",
-      "name": "Túi jelly mini trong suốt quai xích",
-      "subtitle": "Acrylic bóng · Đi biển, đi tiệc cực hợp",
-      "price": 255000,
-      "oldPrice": 770000,
-      "sold": 688,
-      "badge": "",
-      "active": true,
-      "images": [
-        "assets/img/tui-jelly-mini-trong-suot/1.webp",
-        "assets/img/tui-jelly-mini-trong-suot/2.webp",
-        "assets/img/tui-jelly-mini-trong-suot/3.webp",
-        "assets/img/tui-jelly-mini-trong-suot/4.webp",
-        "assets/img/tui-jelly-mini-trong-suot/5.webp",
-        "assets/img/tui-jelly-mini-trong-suot/6.webp",
-        "assets/img/tui-jelly-mini-trong-suot/7.webp",
-        "assets/img/tui-jelly-mini-trong-suot/8.webp",
-        "assets/img/tui-jelly-mini-trong-suot/9.webp"
-      ],
-      "variants": [
-        {
-          "name": "Màu sắc",
-          "options": [
-            "Trắng sữa",
-            "Hồng",
-            "Xanh biển",
-            "Đen"
-          ]
-        }
-      ],
-      "specs": [
-        {
-          "k": "Chất liệu",
-          "v": "Acrylic bóng"
-        },
-        {
-          "k": "Kiểu dáng",
-          "v": "Túi mini quai xích"
-        },
-        {
-          "k": "Kích thước",
-          "v": "Khoảng 18 × 12 × 6 cm"
-        },
-        {
-          "k": "Phù hợp",
-          "v": "Đi biển, dự tiệc, chụp ảnh"
-        }
-      ],
-      "description": "<p>Túi jelly mini chất liệu acrylic bóng, nhìn như thuỷ tinh — item lên hình \"sương sương\" mà ai cũng hỏi mua ở đâu.</p>\n<ul>\n<li>Chất liệu acrylic dày, không bị ố vàng, lau là sạch.</li>\n<li>Quai xích kim loại tháo rời, đeo chéo hoặc xách tay.</li>\n<li>Chống thấm nước — rất hợp đi biển, hồ bơi.</li>\n<li>Đựng vừa điện thoại, son, ví mini.</li>\n</ul>",
-      "cny": 6,
-      "video": "assets/videos/tui-jelly-mini-trong-suot.mp4",
-      "videoPoster": "assets/videos/tui-jelly-mini-trong-suot.jpg"
-    },
-    {
-      "slug": "tui-vuong-nu-han-quoc",
-      "offerId": "1038654325409",
-      "name": "Túi vuông nữ Hàn Quốc da vân nổi",
-      "subtitle": "Form vuông đứng · Đeo chéo thanh lịch",
-      "price": 295000,
-      "oldPrice": 890000,
-      "sold": 512,
-      "badge": "",
-      "active": true,
-      "images": [
-        "assets/img/tui-vuong-nu-han-quoc/1.webp",
-        "assets/img/tui-vuong-nu-han-quoc/2.webp",
-        "assets/img/tui-vuong-nu-han-quoc/3.webp",
-        "assets/img/tui-vuong-nu-han-quoc/4.webp",
-        "assets/img/tui-vuong-nu-han-quoc/5.webp",
-        "assets/img/tui-vuong-nu-han-quoc/6.webp",
-        "assets/img/tui-vuong-nu-han-quoc/7.webp",
-        "assets/img/tui-vuong-nu-han-quoc/8.webp",
-        "assets/img/tui-vuong-nu-han-quoc/9.webp",
-        "assets/img/tui-vuong-nu-han-quoc/10.webp"
-      ],
-      "variants": [
-        {
-          "name": "Màu sắc",
-          "options": [
-            "Đen",
-            "Trắng",
-            "Be",
-            "Nâu bò"
-          ]
-        }
-      ],
-      "specs": [
-        {
-          "k": "Chất liệu",
-          "v": "Da PU vân nổi"
-        },
-        {
-          "k": "Kiểu dáng",
-          "v": "Túi vuông đeo chéo"
-        },
-        {
-          "k": "Kích thước",
-          "v": "Khoảng 23 × 16 × 8 cm"
-        },
-        {
-          "k": "Phù hợp",
-          "v": "Công sở, đi chơi"
-        }
-      ],
-      "description": "<p>Túi vuông Hàn Quốc form cứng, bề mặt da vân nổi — kiểu túi \"đi làm không bao giờ sai\".</p>\n<ul>\n<li>Form vuông đứng, giữ dáng, chống nhăn.</li>\n<li>Có ngăn khoá kéo trong và ngăn phụ đựng điện thoại.</li>\n<li>Dây dài điều chỉnh, đeo chéo vừa vặn mọi chiều cao.</li>\n<li>Phối được với sơ mi, blazer, váy liền.</li>\n</ul>",
-      "cny": 13,
-      "video": "assets/videos/tui-vuong-nu-han-quoc.mp4",
-      "videoPoster": "assets/videos/tui-vuong-nu-han-quoc.jpg"
-    },
-    {
-      "slug": "tui-boston-ren-nu",
-      "offerId": "944825473040",
-      "name": "Túi Boston ren nữ cầm tay",
-      "subtitle": "Ren thêu tinh xảo · Có dây đeo chéo",
-      "price": 285000,
-      "oldPrice": 860000,
-      "sold": 402,
-      "badge": "Mới",
-      "active": true,
-      "images": [
-        "assets/img/tui-boston-ren-nu/1.webp",
-        "assets/img/tui-boston-ren-nu/2.webp",
-        "assets/img/tui-boston-ren-nu/3.webp",
-        "assets/img/tui-boston-ren-nu/4.webp",
-        "assets/img/tui-boston-ren-nu/5.webp",
-        "assets/img/tui-boston-ren-nu/6.webp",
-        "assets/img/tui-boston-ren-nu/7.webp",
-        "assets/img/tui-boston-ren-nu/8.webp",
-        "assets/img/tui-boston-ren-nu/9.webp"
-      ],
-      "variants": [
-        {
-          "name": "Màu sắc",
-          "options": [
-            "Trắng",
-            "Hồng",
-            "Đen"
-          ]
-        }
-      ],
-      "specs": [
-        {
-          "k": "Chất liệu",
-          "v": "Vải ren thêu"
-        },
-        {
-          "k": "Kiểu dáng",
-          "v": "Túi Boston cầm tay / đeo chéo"
-        },
-        {
-          "k": "Kích thước",
-          "v": "Khoảng 22 × 14 × 12 cm"
-        },
-        {
-          "k": "Phù hợp",
-          "v": "Tiệc cưới, hẹn hò, đi chơi"
-        }
-      ],
-      "description": "<p>Túi Boston dáng tròn mềm với hoạ tiết ren thêu — nữ tính, nhẹ nhàng, hợp các buổi hẹn và tiệc cưới.</p>\n<ul>\n<li>Vải ren thêu tỉ mỉ, lót trong chắc chắn.</li>\n<li>Có quai cầm tay + dây đeo chéo tháo rời.</li>\n<li>Lòng túi rộng, đựng được nhiều đồ hơn vẻ ngoài.</li>\n</ul>",
-      "cny": 12,
-      "video": "assets/videos/tui-boston-ren-nu.mp4",
-      "videoPoster": "assets/videos/tui-boston-ren-nu.jpg"
-    },
-    {
-      "slug": "tui-deo-vai-quai-no",
-      "offerId": "917243532066",
-      "name": "Túi đeo vai quai nơ xếp ly",
-      "subtitle": "Quai nơ thắt · Nhẹ, mềm, đựng nhiều",
-      "price": 259000,
-      "oldPrice": 780000,
-      "sold": 934,
-      "badge": "",
-      "active": true,
-      "images": [
-        "assets/img/tui-deo-vai-quai-no/1.webp",
-        "assets/img/tui-deo-vai-quai-no/2.webp",
-        "assets/img/tui-deo-vai-quai-no/3.webp",
-        "assets/img/tui-deo-vai-quai-no/4.webp",
-        "assets/img/tui-deo-vai-quai-no/5.webp",
-        "assets/img/tui-deo-vai-quai-no/6.webp",
-        "assets/img/tui-deo-vai-quai-no/7.webp",
-        "assets/img/tui-deo-vai-quai-no/8.webp",
-        "assets/img/tui-deo-vai-quai-no/9.webp",
-        "assets/img/tui-deo-vai-quai-no/10.webp"
-      ],
-      "variants": [
-        {
-          "name": "Màu sắc",
-          "options": [
-            "Trắng",
-            "Hồng",
-            "Đen",
-            "Xanh nhạt"
-          ]
-        }
-      ],
-      "specs": [
-        {
-          "k": "Chất liệu",
-          "v": "Vải PU mềm xếp ly"
-        },
-        {
-          "k": "Kiểu dáng",
-          "v": "Túi đeo vai quai nơ"
-        },
-        {
-          "k": "Kích thước",
-          "v": "Khoảng 26 × 18 × 8 cm"
-        },
-        {
-          "k": "Phù hợp",
-          "v": "Đi chơi, đi biển, dạo phố"
-        }
-      ],
-      "description": "<p>Túi đeo vai quai nơ xếp ly — điểm nhấn nữ tính cho mọi set đồ mùa hè.</p>\n<ul>\n<li>Thân túi xếp ly mềm mại, có lót trong.</li>\n<li>Quai nơ thắt sẵn, đeo vai hoặc cầm tay.</li>\n<li>Trọng lượng nhẹ, gấp gọn bỏ balo khi không dùng.</li>\n</ul>",
-      "cny": 7,
-      "video": "assets/videos/tui-deo-vai-quai-no.mp4",
-      "videoPoster": "assets/videos/tui-deo-vai-quai-no.jpg"
-    },
-    {
-      "slug": "tui-xep-ly-no-nu",
-      "offerId": "1074345975022",
-      "name": "Túi xếp ly nơ nữ cá tính",
-      "subtitle": "Xếp ly mềm · Quai nơ · Đeo chéo được",
-      "price": 269000,
-      "oldPrice": 810000,
-      "sold": 577,
-      "badge": "",
-      "active": true,
-      "images": [
-        "assets/img/tui-xep-ly-no-nu/1.webp",
-        "assets/img/tui-xep-ly-no-nu/2.webp",
-        "assets/img/tui-xep-ly-no-nu/3.webp",
-        "assets/img/tui-xep-ly-no-nu/4.webp",
-        "assets/img/tui-xep-ly-no-nu/5.webp",
-        "assets/img/tui-xep-ly-no-nu/6.webp",
-        "assets/img/tui-xep-ly-no-nu/7.webp",
-        "assets/img/tui-xep-ly-no-nu/8.webp",
-        "assets/img/tui-xep-ly-no-nu/9.webp"
-      ],
-      "variants": [
-        {
-          "name": "Màu sắc",
-          "options": [
-            "Trắng",
-            "Hồng",
-            "Đen",
-            "Be"
-          ]
-        }
-      ],
-      "specs": [
-        {
-          "k": "Chất liệu",
-          "v": "Vải PU xếp ly"
-        },
-        {
-          "k": "Kiểu dáng",
-          "v": "Túi đeo chéo / đeo vai"
-        },
-        {
-          "k": "Kích thước",
-          "v": "Khoảng 24 × 16 × 8 cm"
-        },
-        {
-          "k": "Phù hợp",
-          "v": "Đi chơi, du lịch, dạo phố"
-        }
-      ],
-      "description": "<p>Túi xếp ly quai nơ phiên bản cá tính hơn — mềm, nhẹ, đeo chéo cả ngày không mỏi.</p>\n<ul>\n<li>Bề mặt xếp ly đều, giữ form tốt.</li>\n<li>Có dây đeo chéo tháo rời + quai nơ cầm tay.</li>\n<li>Ngăn chính rộng, có túi nhỏ đựng điện thoại.</li>\n<li>Hợp outfit hè: váy trắng, sơ mi, quần short.</li>\n</ul>",
-      "cny": 10,
-      "video": "assets/videos/tui-xep-ly-no-nu.mp4",
-      "videoPoster": "assets/videos/tui-xep-ly-no-nu.jpg"
+      "description": "Bộ giác hơi silicon massage fascia không dùng lửa — thay thế giác hơi truyền thống bằng lửa, an toàn, dễ dùng tại nhà. Silicon mềm mại bám chặt da, tạo lực hút đều, giúp lưu thông khí huyết, giảm đau nhức vai gáy, lưng, đùi. Không cần lửa, không bỏng, phù hợp mọi người. Dùng được cho massage body, đi gió, thư giãn cơ bắp sau tập luyện. Gói 1 cái hoặc combo 10 cái tiết kiệm."
     }
   ]
 }
