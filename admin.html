@@ -12,10 +12,18 @@
     input { width:100%; padding:8px; border:1px solid #d1d5db; border-radius:6px; box-sizing:border-box; }
     button { margin-top:12px; padding:8px 14px; border:none; border-radius:6px; background:#e83a30; color:#fff; font-weight:700; cursor:pointer; }
     .note { font-size:12px; color:#6b7280; margin-top:8px; }
+    .hidden { display:none; }
   </style>
 </head>
 <body>
-  <div class="card">
+  <div class="card" id="loginCard">
+    <h1>Admin Login</h1>
+    <label>Mật khẩu</label>
+    <input id="adminPass" type="password" placeholder="Nhập mật khẩu" />
+    <button type="button" onclick="doLogin()">Đăng nhập</button>
+    <div class="note" id="loginStatus"></div>
+  </div>
+  <div class="card hidden" id="adminCard">
     <h1>Admin - Facebook Pixel</h1>
     <p class="note">Nhập FB Pixel ID (có thể nhiều). Lưu xong tự áp dụng cho landing page cùng origin.</p>
     <label>Pixel ID 1</label>
@@ -30,17 +38,32 @@
     <a href="p/giac-hoi-silicon.html" style="color:#e83a30;font-weight:600;text-decoration:none;">← Về trang sản phẩm</a>
   </div>
   <script>
+    var ADMIN_PASS = 'lumstore123';
     function getPixelIds() {
       try { var arr = JSON.parse(localStorage.getItem('fbPixelIds') || '[]'); if (Array.isArray(arr)) return arr.filter(Boolean); } catch (e) {}
       var single = localStorage.getItem('fbPixelId');
       return single ? [single] : [];
     }
     (function () {
+      if (sessionStorage.getItem('adminAuth') === '1') showAdmin();
+    })();
+    function doLogin() {
+      var v = document.getElementById('adminPass').value;
+      if (v === ADMIN_PASS) {
+        sessionStorage.setItem('adminAuth', '1');
+        showAdmin();
+      } else {
+        document.getElementById('loginStatus').textContent = 'Sai mật khẩu.';
+      }
+    }
+    function showAdmin() {
+      document.getElementById('loginCard').classList.add('hidden');
+      document.getElementById('adminCard').classList.remove('hidden');
       var ids = getPixelIds();
       document.getElementById('pixel1').value = ids[0] || '';
       document.getElementById('pixel2').value = ids[1] || '';
       document.getElementById('pixel3').value = ids[2] || '';
-    })();
+    }
     function savePixels() {
       var ids = [
         document.getElementById('pixel1').value.trim(),
