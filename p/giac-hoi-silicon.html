@@ -122,8 +122,8 @@
       animation: fadeOut 0.4s ease forwards;
     }
     @keyframes blinkNoti {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.15; }
+      0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 rgba(251, 191, 36, 0); }
+      50% { opacity: 0.3; transform: scale(1.08); box-shadow: 0 0 18px rgba(251, 191, 36, 0.95); }
     }
     .toast-blink {
       animation: blinkNoti 0.7s infinite;
