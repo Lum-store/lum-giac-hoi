@@ -1439,40 +1439,6 @@
     }
   </script>
 
-  <!-- Admin: FB Pixel (hỗ trợ nhiều pixel) -->
-  <div style="padding:10px;text-align:center;font-size:12px;">
-    <button type="button" onclick="toggleAdminPanel()" style="padding:4px 8px;">⚙️ Admin Pixel</button>
-    <div id="adminPanel" style="display:none;margin-top:8px;">
-      <div style="margin-bottom:4px;">Nhập FB Pixel ID (có thể nhiều):</div>
-      <input id="pixel1" placeholder="Pixel ID 1" style="width:200px;padding:4px;margin:2px;" /><br/>
-      <input id="pixel2" placeholder="Pixel ID 2" style="width:200px;padding:4px;margin:2px;" /><br/>
-      <input id="pixel3" placeholder="Pixel ID 3" style="width:200px;padding:4px;margin:2px;" /><br/>
-      <button type="button" onclick="savePixels()" style="padding:4px 8px;margin-top:4px;">Lưu</button>
-    </div>
-  </div>
-  <script>
-    function getPixelIds() {
-      try { var arr = JSON.parse(localStorage.getItem('fbPixelIds') || '[]'); if (Array.isArray(arr)) return arr.filter(Boolean); } catch (e) {}
-      var single = localStorage.getItem('fbPixelId');
-      return single ? [single] : [];
-    }
-    function toggleAdminPanel() {
-      var p = document.getElementById('adminPanel');
-      p.style.display = p.style.display === 'none' ? 'block' : 'none';
-      var ids = getPixelIds();
-      document.getElementById('pixel1').value = ids[0] || '';
-      document.getElementById('pixel2').value = ids[1] || '';
-      document.getElementById('pixel3').value = ids[2] || '';
-    }
-    function savePixels() {
-      var ids = [
-        document.getElementById('pixel1').value.trim(),
-        document.getElementById('pixel2').value.trim(),
-        document.getElementById('pixel3').value.trim()
-      ].filter(Boolean);
-      localStorage.setItem('fbPixelIds', JSON.stringify(ids));
-      location.reload();
-    }
-  </script>
+  <!-- Admin tách riêng: /admin.html -->
 </body>
 </html>
