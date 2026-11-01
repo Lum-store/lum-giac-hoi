@@ -136,10 +136,10 @@
 <body>
 
   <!-- KHUNG CHÍNH 420PX -->
-  <div class="pageview-container">
+  <div class="pageview-container pt-[67px]">
 
     <!-- 1. STICKY TOP HEADER (#2d2d2d, cao 67px, cố định tuyệt đối lên trên cùng) -->
-    <header class="sticky top-0 z-[100] h-[67px] bg-[#2d2d2d] px-3 flex items-center justify-between shadow-md w-full">
+    <header class="fixed top-0 left-1/2 -translate-x-1/2 z-[100] h-[67px] bg-[#2d2d2d] px-3 flex items-center justify-between shadow-md w-full max-w-[420px]">
       <div class="w-[228px]">
         <h3 class="text-[#ffab0c] font-bold italic text-[18px] leading-[1.2] tracking-tight" style="font-family: 'Roboto', sans-serif;">
           Lụm Store - Gia Dụng &amp; Chăm Sóc Sức Khỏe
@@ -1197,7 +1197,10 @@
     ];
     const buyerLocations = ["Hà Nội", "TP.HCM", "Đà Nẵng", "Hải Phòng", "Ninh Bình", "Bình Dương", "Cần Thơ", "Quảng Ninh", "Thanh Hóa", "Nghệ An"];
     const productCombos = [
-      "Gói 5 cái (Màu Đỏ)", "Gói 10 cái (Màu Đen)", "Combo 20 cái (Mix Màu)", "Gói 10 cái (Màu Đỏ)", "Gói 5 cái (Màu Đen)"
+      // 50% gói 10 cái, 40% gói 20 cái, 10% gói 5 cái
+      "Gói 10 cái (Màu Đỏ)", "Gói 10 cái (Màu Đen)", "Gói 10 cái (Màu Đỏ)", "Gói 10 cái (Màu Đen)", "Gói 10 cái (Màu Đỏ)",
+      "Combo 20 cái (Mix Màu)", "Combo 20 cái (Màu Đỏ)", "Combo 20 cái (Màu Đen)", "Combo 20 cái (Mix Màu)",
+      "Gói 5 cái (Màu Đỏ)"
     ];
     const timeAgos = ["cách đây 1 phút", "cách đây 2 phút", "cách đây 3 phút", "vừa xong", "cách đây 4 phút"];
 
