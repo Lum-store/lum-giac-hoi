@@ -6,7 +6,7 @@
   <title>Admin - Lụm Store</title>
   <style>
     body { font-family: 'Montserrat','Inter',sans-serif; background:#f3f4f6; margin:0; padding:20px; }
-    .card { max-width:480px; margin:0 auto; background:#fff; border-radius:12px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,.1); }
+    .card { max-width:520px; margin:0 auto; background:#fff; border-radius:12px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,.1); }
     h1 { font-size:20px; margin:0 0 12px; }
     label { display:block; font-weight:600; margin:10px 0 4px; }
     input { width:100%; padding:8px; border:1px solid #d1d5db; border-radius:6px; box-sizing:border-box; }
@@ -24,21 +24,29 @@
     <div class="note" id="loginStatus"></div>
   </div>
   <div class="card hidden" id="adminCard">
-    <h1>Admin - Facebook Pixel</h1>
-    <p class="note">Nhập FB Pixel ID (có thể nhiều). Lưu xong tự áp dụng cho landing page cùng origin.</p>
+    <h1>Admin - Cài đặt</h1>
+    <label>Tên shop</label>
+    <input id="brand" placeholder="Lụm Store - ..." />
+    <label>Số điện thoại</label>
+    <input id="phone" placeholder="0982467019" />
+    <label>Google Sheet URL</label>
+    <input id="sheet" placeholder="https://script.google.com/..." />
     <label>Pixel ID 1</label>
     <input id="pixel1" placeholder="1234567890" />
     <label>Pixel ID 2</label>
     <input id="pixel2" placeholder="0987654321" />
     <label>Pixel ID 3</label>
     <input id="pixel3" placeholder="1122334455" />
-    <button type="button" onclick="savePixels()">Lưu</button>
+    <button type="button" onclick="saveAll()">Lưu</button>
     <div class="note" id="status"></div>
     <hr style="margin:16px 0;border:none;border-top:1px solid #e5e7eb;" />
     <a href="p/giac-hoi-silicon.html" style="color:#e83a30;font-weight:600;text-decoration:none;">← Về trang sản phẩm</a>
   </div>
   <script>
     var ADMIN_PASS = '110499aA@';
+    function getCfg() {
+      try { return JSON.parse(localStorage.getItem('siteConfig') || '{}'); } catch (e) { return {}; }
+    }
     function getPixelIds() {
       try { var arr = JSON.parse(localStorage.getItem('fbPixelIds') || '[]'); if (Array.isArray(arr)) return arr.filter(Boolean); } catch (e) {}
       var single = localStorage.getItem('fbPixelId');
@@ -59,19 +67,29 @@
     function showAdmin() {
       document.getElementById('loginCard').classList.add('hidden');
       document.getElementById('adminCard').classList.remove('hidden');
+      var cfg = getCfg();
+      document.getElementById('brand').value = cfg.brand || '';
+      document.getElementById('phone').value = cfg.phone || '';
+      document.getElementById('sheet').value = cfg.sheetEndpoint || '';
       var ids = getPixelIds();
       document.getElementById('pixel1').value = ids[0] || '';
       document.getElementById('pixel2').value = ids[1] || '';
       document.getElementById('pixel3').value = ids[2] || '';
     }
-    function savePixels() {
+    function saveAll() {
+      var cfg = {
+        brand: document.getElementById('brand').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        sheetEndpoint: document.getElementById('sheet').value.trim()
+      };
+      localStorage.setItem('siteConfig', JSON.stringify(cfg));
       var ids = [
         document.getElementById('pixel1').value.trim(),
         document.getElementById('pixel2').value.trim(),
         document.getElementById('pixel3').value.trim()
       ].filter(Boolean);
       localStorage.setItem('fbPixelIds', JSON.stringify(ids));
-      document.getElementById('status').textContent = 'Đã lưu ' + ids.length + ' pixel. Tự áp dụng cho landing page.';
+      document.getElementById('status').textContent = 'Đã lưu. Tự áp dụng cho landing page.';
     }
   </script>
 </body>
