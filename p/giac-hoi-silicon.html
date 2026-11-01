@@ -7,7 +7,7 @@
   <meta name="description" content="Bộ giác hơi silicon massage fascia không dùng lửa an toàn tại nhà. Tạo lực hút đều, lưu thông khí huyết, giảm đau nhức vai gáy, lưng, đùi." />
   <script>
     (function () {
-      var base = {"brand":"Lụm Store - Chuyên Hàng Đài Loan Chất Lượng Cao","phone":"0982467019","sheetEndpoint":"https://script.google.com/macros/s/AKfycbzNQ9Neiyrie5w6OQFu_LAz6MfSfgszlPtmGEOjYSBCfm2hlCIatzBsWF3-S3H1I7Hs/exec","shop":"giac-hoi","fbPixelId":""};
+      var base = {"brand":"Lụm Store - Chuyên Hàng Đài Loan Chất Lượng Cao","phone":"0982467019","sheetEndpoint":"https://script.google.com/macros/s/AKfycbzNQ9Neiyrie5w6OQFu_LAz6MfSfgszlPtmGEOjYSBCfm2hlCIatzBsWF3-S3H1I7Hs/exec","shop":"giac-hoi","fbPixelId":"","fbPixelIds":[]};
       var saved = {};
       try { saved = JSON.parse(localStorage.getItem('siteConfig') || '{}'); } catch (e) { saved = {}; }
       window.LUM_CONFIG = Object.assign({}, base, saved);
@@ -22,6 +22,9 @@
       var ids = [];
       try { ids = JSON.parse(localStorage.getItem('fbPixelIds') || '[]'); } catch (e) { ids = []; }
       if (!Array.isArray(ids)) ids = [];
+      // Pixel ID gắn cứng trong code (áp dụng cho mọi khách)
+      var cfgIds = (window.LUM_CONFIG && Array.isArray(window.LUM_CONFIG.fbPixelIds)) ? window.LUM_CONFIG.fbPixelIds : [];
+      cfgIds.forEach(function (id) { if (id && ids.indexOf(id) === -1) ids.push(id); });
       var single = (window.LUM_CONFIG && window.LUM_CONFIG.fbPixelId) || localStorage.getItem('fbPixelId') || '';
       if (single && ids.indexOf(single) === -1) ids.push(single);
       ids = ids.filter(Boolean);
