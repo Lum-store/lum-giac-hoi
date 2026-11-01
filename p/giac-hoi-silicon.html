@@ -13,10 +13,15 @@
   <!-- Facebook Pixel: dán ID vào fbPixelId ở trên để bật -->
   <script>
     (function () {
-      var pid = (window.LUM_CONFIG && window.LUM_CONFIG.fbPixelId) || localStorage.getItem('fbPixelId') || '';
-      if (!pid) return;
+      var ids = [];
+      try { ids = JSON.parse(localStorage.getItem('fbPixelIds') || '[]'); } catch (e) { ids = []; }
+      if (!Array.isArray(ids)) ids = [];
+      var single = (window.LUM_CONFIG && window.LUM_CONFIG.fbPixelId) || localStorage.getItem('fbPixelId') || '';
+      if (single && ids.indexOf(single) === -1) ids.push(single);
+      ids = ids.filter(Boolean);
+      if (!ids.length) return;
       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', pid);
+      ids.forEach(function (id) { try { fbq('init', id); } catch (e) {} });
       fbq('track', 'PageView');
     })();
   </script>
@@ -1434,21 +1439,40 @@
     }
   </script>
 
-  <!-- Ô nhập FB Pixel ID (admin) -->
+  <!-- Admin: FB Pixel (hỗ trợ nhiều pixel) -->
   <div style="padding:10px;text-align:center;font-size:12px;">
-    <input id="fbPixelInput" placeholder="Nhập FB Pixel ID" style="width:200px;padding:4px;" />
-    <button type="button" onclick="saveFbPixel()" style="padding:4px 8px;">Lưu</button>
+    <button type="button" onclick="toggleAdminPanel()" style="padding:4px 8px;">⚙️ Admin Pixel</button>
+    <div id="adminPanel" style="display:none;margin-top:8px;">
+      <div style="margin-bottom:4px;">Nhập FB Pixel ID (có thể nhiều):</div>
+      <input id="pixel1" placeholder="Pixel ID 1" style="width:200px;padding:4px;margin:2px;" /><br/>
+      <input id="pixel2" placeholder="Pixel ID 2" style="width:200px;padding:4px;margin:2px;" /><br/>
+      <input id="pixel3" placeholder="Pixel ID 3" style="width:200px;padding:4px;margin:2px;" /><br/>
+      <button type="button" onclick="savePixels()" style="padding:4px 8px;margin-top:4px;">Lưu</button>
+    </div>
   </div>
   <script>
-    function saveFbPixel() {
-      var v = document.getElementById('fbPixelInput').value.trim();
-      localStorage.setItem('fbPixelId', v);
+    function getPixelIds() {
+      try { var arr = JSON.parse(localStorage.getItem('fbPixelIds') || '[]'); if (Array.isArray(arr)) return arr.filter(Boolean); } catch (e) {}
+      var single = localStorage.getItem('fbPixelId');
+      return single ? [single] : [];
+    }
+    function toggleAdminPanel() {
+      var p = document.getElementById('adminPanel');
+      p.style.display = p.style.display === 'none' ? 'block' : 'none';
+      var ids = getPixelIds();
+      document.getElementById('pixel1').value = ids[0] || '';
+      document.getElementById('pixel2').value = ids[1] || '';
+      document.getElementById('pixel3').value = ids[2] || '';
+    }
+    function savePixels() {
+      var ids = [
+        document.getElementById('pixel1').value.trim(),
+        document.getElementById('pixel2').value.trim(),
+        document.getElementById('pixel3').value.trim()
+      ].filter(Boolean);
+      localStorage.setItem('fbPixelIds', JSON.stringify(ids));
       location.reload();
     }
-    (function () {
-      var v = localStorage.getItem('fbPixelId');
-      if (v) document.getElementById('fbPixelInput').value = v;
-    })();
   </script>
 </body>
 </html>
