@@ -422,16 +422,13 @@
           
           <input type="text" name="house_number" required placeholder="Số nhà, tên đường"
                  class="w-full h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 focus:border-red-500 rounded-sm" />
-          <select name="province" required class="w-full h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
-            <option value="" disabled selected>Chọn Tỉnh / Thành phố</option>
-          </select>
+          <input type="text" name="province" required placeholder="Tỉnh / Thành phố"
+                 class="w-full h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 focus:border-red-500 rounded-sm" />
           <div class="flex gap-2">
-            <select name="district" required disabled class="w-1/2 h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
-              <option value="">Chọn Quận / Huyện</option>
-            </select>
-            <select name="ward" required disabled class="w-1/2 h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
-              <option value="">Chọn Xã / Phường</option>
-            </select>
+            <input type="text" name="district" required placeholder="Quận / Huyện"
+                   class="w-1/2 h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 focus:border-red-500 rounded-sm" />
+            <input type="text" name="ward" required placeholder="Xã / Phường"
+                   class="w-1/2 h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 focus:border-red-500 rounded-sm" />
           </div>
           
           <div class="relative">
@@ -646,16 +643,13 @@
           
           <input type="text" name="house_number" required placeholder="Số nhà, tên đường"
                  class="w-full h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 rounded-sm" />
-          <select name="province" required class="w-full h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
-            <option value="" disabled selected>Chọn Tỉnh / Thành phố</option>
-          </select>
+          <input type="text" name="province" required placeholder="Tỉnh / Thành phố"
+                 class="w-full h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 focus:border-red-500 rounded-sm" />
           <div class="flex gap-2">
-            <select name="district" required disabled class="w-1/2 h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
-              <option value="">Chọn Quận / Huyện</option>
-            </select>
-            <select name="ward" required disabled class="w-1/2 h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
-              <option value="">Chọn Xã / Phường</option>
-            </select>
+            <input type="text" name="district" required placeholder="Quận / Huyện"
+                   class="w-1/2 h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 focus:border-red-500 rounded-sm" />
+            <input type="text" name="ward" required placeholder="Xã / Phường"
+                   class="w-1/2 h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 focus:border-red-500 rounded-sm" />
           </div>
           
           <div class="relative">
@@ -866,16 +860,13 @@
         
         <input type="text" name="house_number" required placeholder="Số nhà, tên đường"
                class="w-full h-[42px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 rounded-sm" />
-        <select name="province" required class="w-full h-[42px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
-          <option value="" disabled selected>Chọn Tỉnh / Thành phố</option>
-        </select>
+        <input type="text" name="province" required placeholder="Tỉnh / Thành phố"
+               class="w-full h-[42px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 rounded-sm" />
         <div class="flex gap-2">
-          <select name="district" required disabled class="w-1/2 h-[42px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
-            <option value="">Chọn Quận / Huyện</option>
-          </select>
-          <select name="ward" required disabled class="w-1/2 h-[42px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
-            <option value="">Chọn Xã / Phường</option>
-          </select>
+          <input type="text" name="district" required placeholder="Quận / Huyện"
+                 class="w-1/2 h-[42px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 rounded-sm" />
+          <input type="text" name="ward" required placeholder="Xã / Phường"
+                 class="w-1/2 h-[42px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 rounded-sm" />
         </div>
         
         <div class="relative">
@@ -1243,7 +1234,6 @@
     window.onload = function () {
       renderThumbnails();
       setInterval(updateAllCountdowns, 1000);
-      initAddressCascade();
 
       // Kích hoạt chu kỳ hiển thị thông báo giả mua hàng
       startFakeBuyerToastLoop();
