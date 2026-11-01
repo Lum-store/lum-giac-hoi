@@ -1220,13 +1220,13 @@
         timeEl.textContent = randomTime;
         descEl.innerHTML = `Đã đặt mua thành công <b class="text-red-600">${randomCombo}</b>`;
 
-        // Hiện toast (nhấp nháy)
+        // Hiện toast (đơn giản, không nhấp nháy)
         toastEl.classList.remove('hidden', 'toast-anim-out');
-        toastEl.classList.add('toast-anim-in', 'toast-blink');
+        toastEl.classList.add('toast-anim-in');
 
         // Tự ẩn sau 1.5 giây
         setTimeout(() => {
-          toastEl.classList.remove('toast-anim-in', 'toast-blink');
+          toastEl.classList.remove('toast-anim-in');
           toastEl.classList.add('toast-anim-out');
           setTimeout(() => {
             toastEl.classList.add('hidden');
