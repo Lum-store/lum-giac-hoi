@@ -122,8 +122,8 @@
       animation: fadeOut 0.4s ease forwards;
     }
     @keyframes blinkNoti {
-      0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 rgba(251, 191, 36, 0); }
-      50% { opacity: 0.3; transform: scale(1.08); box-shadow: 0 0 18px rgba(251, 191, 36, 0.95); }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
     }
     .toast-blink {
       animation: blinkNoti 0.7s infinite;
@@ -337,7 +337,7 @@
         MUA NGAY ĐỂ NHẬN ƯU ĐÃI
       </h3>
       <p class="text-gray-900 text-[15px] font-bold mt-1">
-        - Gói 5 &amp; 10 cái: +30.000đ ship · Freeship từ 20 cái
+        - Gói 10 cái: +30.000đ ship · Freeship từ 20 cái
       </p>
       <h3 class="text-[#e16307] text-[25px] font-extrabold italic heading-shadow mt-2">
         CHÍNH SÁCH BÁN HÀNG
@@ -417,7 +417,7 @@
             <select name="select_1" required
                     class="w-full h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
               <option value="" disabled selected>Chọn gói sản phẩm ưu đãi</option>
-              <option value="Gói 5 cái: 95.000đ (+30k ship)">Gói 5 cái: 95.000đ (+30k ship)</option>
+              
               <option value="Gói 10 cái: 165.000đ (+30k ship) - Bán chạy">Gói 10 cái: 165.000đ (+30k ship) - Bán chạy</option>
               <option value="Combo 20 cái: 299.000đ + Miễn phí ship">Combo 20 cái: 299.000đ + Miễn phí ship</option>
             </select>
@@ -629,7 +629,7 @@
             <select name="select_1" required
                     class="w-full h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
               <option value="" disabled selected>Chọn gói sản phẩm ưu đãi</option>
-              <option value="Gói 5 cái: 95.000đ (+30k ship)">Gói 5 cái: 95.000đ (+30k ship)</option>
+              
               <option value="Gói 10 cái: 165.000đ (+30k ship) - Bán chạy">Gói 10 cái: 165.000đ (+30k ship) - Bán chạy</option>
               <option value="Combo 20 cái: 299.000đ + Miễn phí ship">Combo 20 cái: 299.000đ + Miễn phí ship</option>
             </select>
@@ -837,7 +837,7 @@
           <select name="select_1" required
                   class="w-full h-[42px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
             <option value="" disabled selected>Chọn gói sản phẩm ưu đãi</option>
-            <option value="Gói 5 cái: 95.000đ (+30k ship)">Gói 5 cái: 95.000đ (+30k ship)</option>
+            
             <option value="Gói 10 cái: 165.000đ (+30k ship) - Bán chạy">Gói 10 cái: 165.000đ (+30k ship) - Bán chạy</option>
             <option value="Combo 20 cái: 299.000đ + Miễn phí ship">Combo 20 cái: 299.000đ + Miễn phí ship</option>
           </select>
@@ -893,7 +893,7 @@
   </div>
 
   <!-- TOAST NOTIFY GIẢ MUA HÀNG (Góc dưới bên trái) -->
-  <div id="fakeBuyerToast" class="fixed top-20 left-3 z-50 hidden max-w-[280px] bg-white/95 backdrop-blur border border-amber-200 rounded-xl p-3 shadow-xl text-gray-900 pointer-events-none">
+  <div id="fakeBuyerToast" class="fixed top-20 left-3 z-50 hidden max-w-[200px] bg-white/95 backdrop-blur border border-amber-200 rounded-lg p-2 shadow-xl text-gray-900 pointer-events-none">
     <div class="flex items-start gap-2.5">
       <div class="w-9 h-9 rounded-full bg-amber-500 text-white font-bold text-sm flex items-center justify-center shrink-0 shadow">
         🛍️
@@ -1197,10 +1197,9 @@
     ];
     const buyerLocations = ["Hà Nội", "TP.HCM", "Đà Nẵng", "Hải Phòng", "Ninh Bình", "Bình Dương", "Cần Thơ", "Quảng Ninh", "Thanh Hóa", "Nghệ An"];
     const productCombos = [
-      // 50% gói 10 cái, 40% gói 20 cái, 10% gói 5 cái
+      // 50% gói 10 cái, 50% gói 20 cái
       "Gói 10 cái (Màu Đỏ)", "Gói 10 cái (Màu Đen)", "Gói 10 cái (Màu Đỏ)", "Gói 10 cái (Màu Đen)", "Gói 10 cái (Màu Đỏ)",
-      "Combo 20 cái (Mix Màu)", "Combo 20 cái (Màu Đỏ)", "Combo 20 cái (Màu Đen)", "Combo 20 cái (Mix Màu)",
-      "Gói 5 cái (Màu Đỏ)"
+      "Combo 20 cái (Mix Màu)", "Combo 20 cái (Màu Đỏ)", "Combo 20 cái (Màu Đen)", "Combo 20 cái (Mix Màu)"
     ];
     const timeAgos = ["cách đây 1 phút", "cách đây 2 phút", "cách đây 3 phút", "vừa xong", "cách đây 4 phút"];
 
