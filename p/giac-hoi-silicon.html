@@ -123,13 +123,13 @@
     }
     @keyframes blinkNoti {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0.2; }
+      50% { opacity: 0.15; }
     }
     .toast-blink {
       animation: blinkNoti 0.7s infinite;
     }
     .toast-anim-in.toast-blink {
-      animation: slideInLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards, blinkNoti 0.7s infinite;
+      animation: slideInLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards, blinkNoti 0.35s step-end infinite;
     }
   </style>
 </head>
@@ -1225,14 +1225,14 @@
         toastEl.classList.remove('hidden', 'toast-anim-out');
         toastEl.classList.add('toast-anim-in', 'toast-blink');
 
-        // Tự ẩn sau 2.5 giây
+        // Tự ẩn sau 1.5 giây
         setTimeout(() => {
           toastEl.classList.remove('toast-anim-in', 'toast-blink');
           toastEl.classList.add('toast-anim-out');
           setTimeout(() => {
             toastEl.classList.add('hidden');
           }, 400);
-        }, 2500);
+        }, 1500);
       }
 
       // Lần đầu hiện sau 2 giây, sau đó lặp lại mỗi 4 giây (noti nhấp nháy góc trên trái)
