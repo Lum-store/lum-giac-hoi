@@ -8,6 +8,8 @@
   <script>
     window.LUM_CONFIG = {"brand":"Lụm Store","phone":"0982467019","sheetEndpoint":"https://script.google.com/macros/s/AKfycbzNQ9Neiyrie5w6OQFu_LAz6MfSfgszlPtmGEOjYSBCfm2hlCIatzBsWF3-S3H1I7Hs/exec","shop":"giac-hoi","fbPixelId":""};
   </script>
+  <script src="../assets/addr-data.js"></script>
+  </script>
   <!-- Facebook Pixel: dán ID vào fbPixelId ở trên để bật -->
   <script>
     (function () {
@@ -422,13 +424,16 @@
           
           <input type="text" name="house_number" required placeholder="Số nhà, tên đường"
                  class="w-full h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 focus:border-red-500 rounded-sm" />
-          <input type="text" name="province" required placeholder="Tỉnh / Thành phố"
-                 class="w-full h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 focus:border-red-500 rounded-sm" />
+          <select name="province" required class="w-full h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+            <option value="" disabled selected>Chọn Tỉnh / Thành phố</option>
+          </select>
           <div class="flex gap-2">
-            <input type="text" name="district" required placeholder="Quận / Huyện"
-                   class="w-1/2 h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 focus:border-red-500 rounded-sm" />
-            <input type="text" name="ward" required placeholder="Xã / Phường"
-                   class="w-1/2 h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 focus:border-red-500 rounded-sm" />
+            <select name="district" required disabled class="w-1/2 h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+              <option value="">Chọn Quận / Huyện</option>
+            </select>
+            <select name="ward" required disabled class="w-1/2 h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+              <option value="">Chọn Xã / Phường</option>
+            </select>
           </div>
           
           <div class="relative">
@@ -643,13 +648,16 @@
           
           <input type="text" name="house_number" required placeholder="Số nhà, tên đường"
                  class="w-full h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 rounded-sm" />
-          <input type="text" name="province" required placeholder="Tỉnh / Thành phố"
-                 class="w-full h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 focus:border-red-500 rounded-sm" />
+          <select name="province" required class="w-full h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+            <option value="" disabled selected>Chọn Tỉnh / Thành phố</option>
+          </select>
           <div class="flex gap-2">
-            <input type="text" name="district" required placeholder="Quận / Huyện"
-                   class="w-1/2 h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 focus:border-red-500 rounded-sm" />
-            <input type="text" name="ward" required placeholder="Xã / Phường"
-                   class="w-1/2 h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 focus:border-red-500 rounded-sm" />
+            <select name="district" required disabled class="w-1/2 h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+              <option value="">Chọn Quận / Huyện</option>
+            </select>
+            <select name="ward" required disabled class="w-1/2 h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+              <option value="">Chọn Xã / Phường</option>
+            </select>
           </div>
           
           <div class="relative">
@@ -860,13 +868,16 @@
         
         <input type="text" name="house_number" required placeholder="Số nhà, tên đường"
                class="w-full h-[42px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 rounded-sm" />
-        <input type="text" name="province" required placeholder="Tỉnh / Thành phố"
-               class="w-full h-[42px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 rounded-sm" />
+        <select name="province" required class="w-full h-[42px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+          <option value="" disabled selected>Chọn Tỉnh / Thành phố</option>
+        </select>
         <div class="flex gap-2">
-          <input type="text" name="district" required placeholder="Quận / Huyện"
-                 class="w-1/2 h-[42px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 rounded-sm" />
-          <input type="text" name="ward" required placeholder="Xã / Phường"
-                 class="w-1/2 h-[42px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 rounded-sm" />
+          <select name="district" required disabled class="w-1/2 h-[42px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+            <option value="">Chọn Quận / Huyện</option>
+          </select>
+          <select name="ward" required disabled class="w-1/2 h-[42px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+            <option value="">Chọn Xã / Phường</option>
+          </select>
         </div>
         
         <div class="relative">
@@ -1234,10 +1245,73 @@
     window.onload = function () {
       renderThumbnails();
       setInterval(updateAllCountdowns, 1000);
+      initAddressCascade();
 
       // Kích hoạt chu kỳ hiển thị thông báo giả mua hàng
       startFakeBuyerToastLoop();
     };
+
+    // Địa chỉ 3 cấp: Tỉnh -> Quận/Huyện -> Xã/Phường (dropdown)
+    function initAddressCascade() {
+      var PROVINCES = [{"code": 89, "short": "An Giang", "name": "Tỉnh An Giang"}, {"code": 77, "short": "Bà Rịa - Vũng Tàu", "name": "Tỉnh Bà Rịa - Vũng Tàu"}, {"code": 95, "short": "Bạc Liêu", "name": "Tỉnh Bạc Liêu"}, {"code": 24, "short": "Bắc Giang", "name": "Tỉnh Bắc Giang"}, {"code": 6, "short": "Bắc Kạn", "name": "Tỉnh Bắc Kạn"}, {"code": 27, "short": "Bắc Ninh", "name": "Tỉnh Bắc Ninh"}, {"code": 83, "short": "Bến Tre", "name": "Tỉnh Bến Tre"}, {"code": 74, "short": "Bình Dương", "name": "Tỉnh Bình Dương"}, {"code": 52, "short": "Bình Định", "name": "Tỉnh Bình Định"}, {"code": 70, "short": "Bình Phước", "name": "Tỉnh Bình Phước"}, {"code": 60, "short": "Bình Thuận", "name": "Tỉnh Bình Thuận"}, {"code": 96, "short": "Cà Mau", "name": "Tỉnh Cà Mau"}, {"code": 4, "short": "Cao Bằng", "name": "Tỉnh Cao Bằng"}, {"code": 92, "short": "Cần Thơ", "name": "Thành phố Cần Thơ"}, {"code": 48, "short": "Đà Nẵng", "name": "Thành phố Đà Nẵng"}, {"code": 66, "short": "Đắk Lắk", "name": "Tỉnh Đắk Lắk"}, {"code": 67, "short": "Đắk Nông", "name": "Tỉnh Đắk Nông"}, {"code": 11, "short": "Điện Biên", "name": "Tỉnh Điện Biên"}, {"code": 75, "short": "Đồng Nai", "name": "Tỉnh Đồng Nai"}, {"code": 87, "short": "Đồng Tháp", "name": "Tỉnh Đồng Tháp"}, {"code": 64, "short": "Gia Lai", "name": "Tỉnh Gia Lai"}, {"code": 2, "short": "Hà Giang", "name": "Tỉnh Hà Giang"}, {"code": 35, "short": "Hà Nam", "name": "Tỉnh Hà Nam"}, {"code": 1, "short": "Hà Nội", "name": "Thành phố Hà Nội"}, {"code": 42, "short": "Hà Tĩnh", "name": "Tỉnh Hà Tĩnh"}, {"code": 30, "short": "Hải Dương", "name": "Tỉnh Hải Dương"}, {"code": 31, "short": "Hải Phòng", "name": "Thành phố Hải Phòng"}, {"code": 93, "short": "Hậu Giang", "name": "Tỉnh Hậu Giang"}, {"code": 17, "short": "Hoà Bình", "name": "Tỉnh Hoà Bình"}, {"code": 79, "short": "Hồ Chí Minh", "name": "Thành phố Hồ Chí Minh"}, {"code": 46, "short": "Huế", "name": "Thành phố Huế"}, {"code": 33, "short": "Hưng Yên", "name": "Tỉnh Hưng Yên"}, {"code": 56, "short": "Khánh Hòa", "name": "Tỉnh Khánh Hòa"}, {"code": 91, "short": "Kiên Giang", "name": "Tỉnh Kiên Giang"}, {"code": 62, "short": "Kon Tum", "name": "Tỉnh Kon Tum"}, {"code": 12, "short": "Lai Châu", "name": "Tỉnh Lai Châu"}, {"code": 20, "short": "Lạng Sơn", "name": "Tỉnh Lạng Sơn"}, {"code": 10, "short": "Lào Cai", "name": "Tỉnh Lào Cai"}, {"code": 68, "short": "Lâm Đồng", "name": "Tỉnh Lâm Đồng"}, {"code": 80, "short": "Long An", "name": "Tỉnh Long An"}, {"code": 36, "short": "Nam Định", "name": "Tỉnh Nam Định"}, {"code": 40, "short": "Nghệ An", "name": "Tỉnh Nghệ An"}, {"code": 37, "short": "Ninh Bình", "name": "Tỉnh Ninh Bình"}, {"code": 58, "short": "Ninh Thuận", "name": "Tỉnh Ninh Thuận"}, {"code": 25, "short": "Phú Thọ", "name": "Tỉnh Phú Thọ"}, {"code": 54, "short": "Phú Yên", "name": "Tỉnh Phú Yên"}, {"code": 44, "short": "Quảng Bình", "name": "Tỉnh Quảng Bình"}, {"code": 49, "short": "Quảng Nam", "name": "Tỉnh Quảng Nam"}, {"code": 51, "short": "Quảng Ngãi", "name": "Tỉnh Quảng Ngãi"}, {"code": 22, "short": "Quảng Ninh", "name": "Tỉnh Quảng Ninh"}, {"code": 45, "short": "Quảng Trị", "name": "Tỉnh Quảng Trị"}, {"code": 94, "short": "Sóc Trăng", "name": "Tỉnh Sóc Trăng"}, {"code": 14, "short": "Sơn La", "name": "Tỉnh Sơn La"}, {"code": 72, "short": "Tây Ninh", "name": "Tỉnh Tây Ninh"}, {"code": 34, "short": "Thái Bình", "name": "Tỉnh Thái Bình"}, {"code": 19, "short": "Thái Nguyên", "name": "Tỉnh Thái Nguyên"}, {"code": 38, "short": "Thanh Hóa", "name": "Tỉnh Thanh Hóa"}, {"code": 82, "short": "Tiền Giang", "name": "Tỉnh Tiền Giang"}, {"code": 84, "short": "Trà Vinh", "name": "Tỉnh Trà Vinh"}, {"code": 8, "short": "Tuyên Quang", "name": "Tỉnh Tuyên Quang"}, {"code": 86, "short": "Vĩnh Long", "name": "Tỉnh Vĩnh Long"}, {"code": 26, "short": "Vĩnh Phúc", "name": "Tỉnh Vĩnh Phúc"}, {"code": 15, "short": "Yên Bái", "name": "Tỉnh Yên Bái"}];
+      // Nếu không có dữ liệu addr (local), chuyển select thành input để không bị kẹt
+      if (!window.ADDR_DATA) {
+        document.querySelectorAll('select[name="province"], select[name="district"], select[name="ward"]').forEach(function (sel) {
+          var inp = document.createElement('input');
+          inp.type = 'text';
+          inp.name = sel.name;
+          inp.required = sel.required;
+          inp.placeholder = sel.options && sel.options[0] ? sel.options[0].textContent.trim() : '';
+          inp.className = 'w-full h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 rounded-sm';
+          if (sel.classList.contains('w-1/2')) inp.className = 'w-1/2 h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 rounded-sm';
+          sel.replaceWith(inp);
+        });
+        return;
+      }
+
+      document.querySelectorAll('select[name="province"]').forEach(function (sel) {
+        sel.innerHTML = '<option value="" disabled selected>Chọn Tỉnh / Thành phố</option>' +
+          PROVINCES.map(function (p) { return '<option value="' + p.code + '" data-name="' + p.name + '">' + p.short + '</option>'; }).join('');
+      });
+
+      document.addEventListener('change', function (e) {
+        var t = e.target;
+        if (!t || t.name !== 'province') return;
+        var form = t.form || t.closest('form');
+        if (!form) return;
+        var distSel = form.querySelector('select[name="district"]');
+        var wardSel = form.querySelector('select[name="ward"]');
+        if (distSel) distSel.innerHTML = '<option value="" disabled selected>Chọn Quận / Huyện</option>';
+        if (wardSel) wardSel.innerHTML = '<option value="" disabled selected>Chọn Xã / Phường</option>';
+        if (distSel) distSel.disabled = true;
+        if (wardSel) wardSel.disabled = true;
+        var code = t.value;
+        var list = (window.ADDR_DATA && window.ADDR_DATA[code]) || [];
+        if (distSel) {
+          distSel.innerHTML = '<option value="" disabled selected>Chọn Quận / Huyện</option>' +
+            list.map(function (d) { return '<option value="' + d.n + '" data-name="' + d.n + '">' + d.n + '</option>'; }).join('');
+          distSel.disabled = false;
+        }
+      });
+
+      document.addEventListener('change', function (e) {
+        var t = e.target;
+        if (!t || t.name !== 'district') return;
+        var form = t.form || t.closest('form');
+        if (!form) return;
+        var provSel = form.querySelector('select[name="province"]');
+        var wardSel = form.querySelector('select[name="ward"]');
+        if (!provSel || !wardSel) return;
+        var code = provSel.value;
+        var list = (window.ADDR_DATA && window.ADDR_DATA[code]) || [];
+        var found = list.filter(function (d) { return d.n === t.value; })[0];
+        if (found && wardSel) {
+          wardSel.innerHTML = '<option value="" disabled selected>Chọn Xã / Phường</option>' +
+            (found.w || []).map(function (w) { return '<option value="' + w + '" data-name="' + w + '">' + w + '</option>'; }).join('');
+          wardSel.disabled = false;
+        }
+      });
+    }
 
     // Địa chỉ 3 cấp: Tỉnh -> Quận/Huyện -> Xã/Phường
     function initAddressCascade() {
