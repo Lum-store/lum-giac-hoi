@@ -6,7 +6,17 @@
   <title>Giác Hơi Silicon Massage Fascia – Không Dùng Lửa, Giảm Đau Vai Gáy Tức Thì</title>
   <meta name="description" content="Bộ giác hơi silicon massage fascia không dùng lửa an toàn tại nhà. Tạo lực hút đều, lưu thông khí huyết, giảm đau nhức vai gáy, lưng, đùi." />
   <script>
-    window.LUM_CONFIG = {"brand":"Lụm Store","phone":"0982467019","sheetEndpoint":"https://script.google.com/macros/s/AKfycbzNQ9Neiyrie5w6OQFu_LAz6MfSfgszlPtmGEOjYSBCfm2hlCIatzBsWF3-S3H1I7Hs/exec","shop":"giac-hoi"};
+    window.LUM_CONFIG = {"brand":"Lụm Store","phone":"0982467019","sheetEndpoint":"https://script.google.com/macros/s/AKfycbzNQ9Neiyrie5w6OQFu_LAz6MfSfgszlPtmGEOjYSBCfm2hlCIatzBsWF3-S3H1I7Hs/exec","shop":"giac-hoi","fbPixelId":""};
+  </script>
+  <!-- Facebook Pixel: dán ID vào fbPixelId ở trên để bật -->
+  <script>
+    (function () {
+      var pid = (window.LUM_CONFIG && window.LUM_CONFIG.fbPixelId) || '';
+      if (!pid) return;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', pid);
+      fbq('track', 'PageView');
+    })();
   </script>
   
   <!-- Tải Tailwind CSS -->
@@ -1172,6 +1182,11 @@
       const thankModal = document.getElementById('thankYouModal');
       thankModal.classList.remove('hidden');
       thankModal.classList.add('flex');
+
+      // Facebook Pixel: Purchase
+      if (typeof fbq === 'function') {
+        try { fbq('track', 'Purchase', { value: total, currency: 'VND' }); } catch (e) {}
+      }
 
       // Gửi đơn lên Google Sheet (Sheet ghi + Telegram thông báo)
       sendToSheet(order).then(function (r) {
