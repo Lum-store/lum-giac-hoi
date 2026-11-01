@@ -108,8 +108,8 @@
 
     /* Hiệu ứng Toast Notify góc dưới bên trái */
     @keyframes slideInLeft {
-      from { transform: translateX(-120%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+      from { transform: translateX(-120%); }
+      to { transform: translateX(0); }
     }
     @keyframes fadeOut {
       from { opacity: 1; }
@@ -123,7 +123,7 @@
     }
     @keyframes blinkNoti {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0.35; }
+      50% { opacity: 0.2; }
     }
     .toast-blink {
       animation: blinkNoti 0.7s infinite;
