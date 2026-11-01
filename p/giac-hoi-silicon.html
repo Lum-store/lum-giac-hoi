@@ -11,7 +11,7 @@
   <!-- Facebook Pixel: dán ID vào fbPixelId ở trên để bật -->
   <script>
     (function () {
-      var pid = (window.LUM_CONFIG && window.LUM_CONFIG.fbPixelId) || '';
+      var pid = (window.LUM_CONFIG && window.LUM_CONFIG.fbPixelId) || localStorage.getItem('fbPixelId') || '';
       if (!pid) return;
       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', pid);
@@ -420,8 +420,19 @@
                  title="Vui lòng nhập đúng số điện thoại 10 số tại Việt Nam"
                  class="w-full h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 focus:border-red-500 rounded-sm" />
           
-          <input type="text" name="address" required placeholder="Địa chỉ nhận hàng chi tiết (Số nhà, Phường/Xã, Tỉnh/TP)"
+          <input type="text" name="house_number" required placeholder="Số nhà, tên đường"
                  class="w-full h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 focus:border-red-500 rounded-sm" />
+          <select name="province" required class="w-full h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+            <option value="" disabled selected>Chọn Tỉnh / Thành phố</option>
+          </select>
+          <div class="flex gap-2">
+            <select name="district" required disabled class="w-1/2 h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+              <option value="">Chọn Quận / Huyện</option>
+            </select>
+            <select name="ward" required disabled class="w-1/2 h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+              <option value="">Chọn Xã / Phường</option>
+            </select>
+          </div>
           
           <div class="relative">
             <select name="select_1" required
@@ -633,8 +644,19 @@
                  title="Vui lòng nhập đúng số điện thoại 10 số tại Việt Nam"
                  class="w-full h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 rounded-sm" />
           
-          <input type="text" name="address" required placeholder="Địa chỉ nhận hàng chi tiết"
+          <input type="text" name="house_number" required placeholder="Số nhà, tên đường"
                  class="w-full h-[43px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 rounded-sm" />
+          <select name="province" required class="w-full h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+            <option value="" disabled selected>Chọn Tỉnh / Thành phố</option>
+          </select>
+          <div class="flex gap-2">
+            <select name="district" required disabled class="w-1/2 h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+              <option value="">Chọn Quận / Huyện</option>
+            </select>
+            <select name="ward" required disabled class="w-1/2 h-[43px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+              <option value="">Chọn Xã / Phường</option>
+            </select>
+          </div>
           
           <div class="relative">
             <select name="select_1" required
@@ -842,8 +864,19 @@
                title="Vui lòng nhập đúng số điện thoại 10 số tại Việt Nam"
                class="w-full h-[42px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 rounded-sm" />
         
-        <input type="text" name="address" required placeholder="Địa chỉ nhận hàng chi tiết"
+        <input type="text" name="house_number" required placeholder="Số nhà, tên đường"
                class="w-full h-[42px] px-3 bg-white border border-gray-300 text-[13.5px] text-black placeholder-black/75 rounded-sm" />
+        <select name="province" required class="w-full h-[42px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+          <option value="" disabled selected>Chọn Tỉnh / Thành phố</option>
+        </select>
+        <div class="flex gap-2">
+          <select name="district" required disabled class="w-1/2 h-[42px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+            <option value="">Chọn Quận / Huyện</option>
+          </select>
+          <select name="ward" required disabled class="w-1/2 h-[42px] px-3 pr-8 bg-white border border-gray-300 text-[13.5px] text-black font-medium appearance-none rounded-sm">
+            <option value="">Chọn Xã / Phường</option>
+          </select>
+        </div>
         
         <div class="relative">
           <select name="select_1" required
@@ -1131,7 +1164,15 @@
 
       const fullName = (formData.get('full_name') || '').trim();
       const phone = (formData.get('phone_number') || '').trim();
-      const address = (formData.get('address') || '').trim();
+      const houseNumber = (formData.get('house_number') || '').trim();
+      const provinceCode = (formData.get('province') || '').trim();
+      const district = (formData.get('district') || '').trim();
+      const ward = (formData.get('ward') || '').trim();
+      const provinceSelect = form.querySelector('select[name="province"]');
+      const provinceName = provinceSelect && provinceSelect.selectedOptions && provinceSelect.selectedOptions[0]
+        ? (provinceSelect.selectedOptions[0].getAttribute('data-name') || provinceSelect.selectedOptions[0].textContent.trim())
+        : provinceCode;
+      const address = [houseNumber, ward, district, provinceName].filter(Boolean).join(', ');
       const combo = formData.get('select_1') || '';
       const color = formData.get('Sellect') || '';
 
@@ -1202,10 +1243,79 @@
     window.onload = function () {
       renderThumbnails();
       setInterval(updateAllCountdowns, 1000);
+      initAddressCascade();
 
       // Kích hoạt chu kỳ hiển thị thông báo giả mua hàng
       startFakeBuyerToastLoop();
     };
+
+    // Địa chỉ 3 cấp: Tỉnh -> Quận/Huyện -> Xã/Phường
+    function initAddressCascade() {
+      var BASE = '../';
+      function fillSelect(sel, items, placeholder, valueKey, labelKey) {
+        if (!sel) return;
+        var html = '<option value="">' + placeholder + '</option>';
+        (items || []).forEach(function (it) {
+          var v = valueKey ? it[valueKey] : it;
+          var l = labelKey ? it[labelKey] : it;
+          html += '<option value="' + v + '" data-name="' + (it.name || it.short || l) + '">' + l + '</option>';
+        });
+        sel.innerHTML = html;
+        sel.value = '';
+        sel.disabled = !(items && items.length);
+      }
+
+      fetch(BASE + 'data/provinces.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (list) {
+          document.querySelectorAll('select[name="province"]').forEach(function (sel) {
+            fillSelect(sel, list, 'Chọn Tỉnh / Thành phố', 'code', 'short');
+          });
+        })
+        .catch(function () {});
+
+      document.addEventListener('change', function (e) {
+        var t = e.target;
+        if (!t || t.name !== 'province') return;
+        var form = t.form || t.closest('form');
+        if (!form) return;
+        var distSel = form.querySelector('select[name="district"]');
+        var wardSel = form.querySelector('select[name="ward"]');
+        if (distSel) fillSelect(distSel, [], 'Chọn Quận / Huyện', null, null);
+        if (wardSel) fillSelect(wardSel, [], 'Chọn Xã / Phường', null, null);
+        var code = t.value;
+        if (!code) return;
+        fetch(BASE + 'assets/addr/' + code + '.json')
+          .then(function (r) { return r.ok ? r.json() : []; })
+          .then(function (list) {
+            if (distSel) fillSelect(distSel, list, 'Chọn Quận / Huyện', 'n', 'n');
+            if (distSel) distSel.disabled = false;
+          })
+          .catch(function () {});
+      });
+
+      document.addEventListener('change', function (e) {
+        var t = e.target;
+        if (!t || t.name !== 'district') return;
+        var form = t.form || t.closest('form');
+        if (!form) return;
+        var provSel = form.querySelector('select[name="province"]');
+        var wardSel = form.querySelector('select[name="ward"]');
+        if (!provSel || !wardSel) return;
+        var code = provSel.value;
+        if (!code) return;
+        fetch(BASE + 'assets/addr/' + code + '.json')
+          .then(function (r) { return r.ok ? r.json() : []; })
+          .then(function (list) {
+            var found = (list || []).filter(function (d) { return d.n === t.value; })[0];
+            if (found && wardSel) {
+              fillSelect(wardSel, found.w, 'Chọn Xã / Phường', null, null);
+              wardSel.disabled = false;
+            }
+          })
+          .catch(function () {});
+      });
+    }
 
     // 6. Hệ thống Thông báo giả mua hàng (Fake Buyer Toast)
     const buyerNames = [
@@ -1258,6 +1368,23 @@
         setInterval(showToast, 5000);
       }, 2000);
     }
+  </script>
+
+  <!-- Ô nhập FB Pixel ID (admin) -->
+  <div style="padding:10px;text-align:center;font-size:12px;">
+    <input id="fbPixelInput" placeholder="Nhập FB Pixel ID" style="width:200px;padding:4px;" />
+    <button type="button" onclick="saveFbPixel()" style="padding:4px 8px;">Lưu</button>
+  </div>
+  <script>
+    function saveFbPixel() {
+      var v = document.getElementById('fbPixelInput').value.trim();
+      localStorage.setItem('fbPixelId', v);
+      location.reload();
+    }
+    (function () {
+      var v = localStorage.getItem('fbPixelId');
+      if (v) document.getElementById('fbPixelInput').value = v;
+    })();
   </script>
 </body>
 </html>
